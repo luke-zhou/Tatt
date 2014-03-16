@@ -3,10 +3,8 @@ package analyser;
 import comparator.ValueComparator;
 import domain.Draw;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,16 +15,32 @@ import java.util.TreeMap;
  */
 public class FrequencyPositionAnalyser extends FrequencyAnalyser
 {
-    public void frequencyPositionTraining(List<Draw> draws)
+    private Map<Integer, Integer>[] positions;
+
+    private void initMap()
+    {
+        List<Map<Integer,Integer>> positionList = new ArrayList<Map<Integer, Integer>>();
+        for (int i = 0; i < 7; i++)
+        {
+            positionList.add(new HashMap<Integer, Integer>());
+        }
+        positions= positionList.toArray();
+        positions[0] = new HashMap<Integer, Integer>();
+        positions[1] = new HashMap<Integer, Integer>();
+        positions[2] = new HashMap<Integer, Integer>();
+        positions[3] = new HashMap<Integer, Integer>();
+        positions[4] = new HashMap<Integer, Integer>();
+        positions[5] = new HashMap<Integer, Integer>();
+        positions[6] = new HashMap<Integer, Integer>();
+    }
+    public void analyse(List<Draw> draws)
+    {
+
+    }
+    public void training(List<Draw> draws)
     {
         System.out.println("Frequency Position:");
-        Map<Integer, Integer> position1 = new HashMap<Integer, Integer>();
-        Map<Integer, Integer> position2 = new HashMap<Integer, Integer>();
-        Map<Integer, Integer> position3 = new HashMap<Integer, Integer>();
-        Map<Integer, Integer> position4 = new HashMap<Integer, Integer>();
-        Map<Integer, Integer> position5 = new HashMap<Integer, Integer>();
-        Map<Integer, Integer> position6 = new HashMap<Integer, Integer>();
-        Map<Integer, Integer> position7 = new HashMap<Integer, Integer>();
+
 
 
         for (int i = 1; i <= 45; i++)

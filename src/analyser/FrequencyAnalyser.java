@@ -17,16 +17,15 @@ import java.util.TreeMap;
  */
 public class FrequencyAnalyser extends AbstractAnalyser
 {
+
+    private Map<Integer, Integer> frequency;
     public void analyse(List<Draw> draws)
     {
-        Map<Integer, Integer> frequency = new HashMap<Integer, Integer>();
+        frequency = new HashMap<Integer, Integer>();
         ValueComparator bvc = new ValueComparator(frequency);
         TreeMap<Integer, Integer> sortedFrequency = new TreeMap<Integer, Integer>(bvc);
 
-        for (int i = 1; i <= 45; i++)
-        {
-            frequency.put(i, 0);
-        }
+        initMap();
 
         for (Draw draw : draws)
         {
@@ -46,14 +45,11 @@ public class FrequencyAnalyser extends AbstractAnalyser
 
     public void frequencyWithSupply(List<Draw> draws)
     {
-        Map<Integer, Integer> frequency = new HashMap<Integer, Integer>();
+        frequency = new HashMap<Integer, Integer>();
         ValueComparator bvc = new ValueComparator(frequency);
         TreeMap<Integer, Integer> sortedFrequency = new TreeMap<Integer, Integer>(bvc);
 
-        for (int i = 1; i <= 45; i++)
-        {
-            frequency.put(i, 0);
-        }
+        initMap();
 
         for (Draw draw : draws)
         {
@@ -76,14 +72,11 @@ public class FrequencyAnalyser extends AbstractAnalyser
     public void train(List<Draw> draws)
     {
         System.out.println("Frequency7:");
-        Map<Integer, Integer> frequency = new HashMap<Integer, Integer>();
+        frequency = new HashMap<Integer, Integer>();
         ValueComparator bvc = new ValueComparator(frequency);
         TreeMap<Integer, Integer> sortedFrequency = new TreeMap<Integer, Integer>(bvc);
 
-        for (int i = 1; i <= 45; i++)
-        {
-            frequency.put(i, 0);
-        }
+        initMap();
 
         int win = 0;
         int winNum = 0;
@@ -133,14 +126,11 @@ public class FrequencyAnalyser extends AbstractAnalyser
     public void frequency8Training(List<Draw> draws)
     {
         System.out.println("Frequency8:");
-        Map<Integer, Integer> frequency = new HashMap<Integer, Integer>();
+        frequency = new HashMap<Integer, Integer>();
         ValueComparator bvc = new ValueComparator(frequency);
         TreeMap<Integer, Integer> sortedFrequency = new TreeMap<Integer, Integer>(bvc);
 
-        for (int i = 1; i <= 45; i++)
-        {
-            frequency.put(i, 0);
-        }
+        initMap();
 
         int win = 0;
         int winNum = 0;
@@ -190,14 +180,11 @@ public class FrequencyAnalyser extends AbstractAnalyser
     public void frequencyWithSupplyTraining(List<Draw> draws)
     {
         System.out.println("Frequency with Supply:");
-        Map<Integer, Integer> frequency = new HashMap<Integer, Integer>();
+        frequency = new HashMap<Integer, Integer>();
         ValueComparator bvc = new ValueComparator(frequency);
         TreeMap<Integer, Integer> sortedFrequency = new TreeMap<Integer, Integer>(bvc);
 
-        for (int i = 1; i <= 45; i++)
-        {
-            frequency.put(i, 0);
-        }
+        initMap();
 
         int win = 0;
         int winNum = 0;
@@ -248,9 +235,22 @@ public class FrequencyAnalyser extends AbstractAnalyser
 
     }
 
+    private void initMap()
+    {
+        for (int i = 1; i <= 45; i++)
+        {
+            frequency.put(i, 0);
+        }
+    }
+
     protected void updateFrequency(Map<Integer, Integer> frequency, Integer num)
     {
         Integer value = frequency.get(num) + 1;
         frequency.put(num, value);
+    }
+
+    public Map<Integer, Integer> getFrequency()
+    {
+        return frequency;
     }
 }

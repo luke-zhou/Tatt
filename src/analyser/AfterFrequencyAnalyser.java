@@ -22,6 +22,7 @@ public class AfterFrequencyAnalyser extends AbstractAnalyser
     @Override
     public void analyse(List<Draw> draws)
     {
+
         afterFrequencyMap = initialMap();
 
         for (Draw draw : draws)
@@ -76,21 +77,25 @@ public class AfterFrequencyAnalyser extends AbstractAnalyser
     @Override
     public void train(List<Draw> draws)
     {
+        FrequencyAnalyser frequencyAnalyser = new FrequencyAnalyser();
+        frequencyAnalyser.analyse(draws);
+
         analyse(draws);
+
         System.out.println("After Frequency:");
         for (int j = TRAIN_SIZE; j < draws.size(); j++)
         {
 
 
             Integer[] selection = new Integer[7];
-            //selection[0] = (int) (Math.random() * 45 + 1);
-            selection[0] = draws.get(j).getNum1();
+            selection[0] = (int) (Math.random() * 45 + 1);
+            //selection[0] = draws.get(j).getNum1();
             for (int i = 0; i < 6; i++)
             {
                 ValueComparator bvc = new ValueComparator(afterFrequencyMap.get(selection[i]));
                 TreeMap<Integer, Integer> sortedFrequency = new TreeMap<Integer, Integer>(bvc);
                 sortedFrequency.putAll(afterFrequencyMap.get(selection[i]));
-                selection[i + 1] = sortedFrequency.firstKey();
+                selection[i + 1] = selectNumByMap(sortedFrequency, frequencyAnalyser);
 
             }
 
@@ -107,5 +112,28 @@ public class AfterFrequencyAnalyser extends AbstractAnalyser
         System.out.println("winNum:" + winNum);
         System.out.println("total:" + total);
         System.out.println("total(%):" + 1.0 * win / total);
+    }
+
+    private Integer selectNumByMap(TreeMap<Integer, Integer> sortedFrequency, FrequencyAnalyser frequencyAnalyser)
+    {
+        Integer value=sortedFrequency.firstEntry().getValue();
+        Integer frequency=0;
+        Integer selectedNum=0;
+        for (int i =0; i<sortedFrequency.size();i++)
+        {
+            Map.Entry<Integer,Integer> entry = sortedFrequency.pollFirstEntry();
+
+            if (entry.getValue() == value
+                    && (frequencyAnalyser.getFrequency().get(entry.getKey())>frequency))
+            {
+                frequency = frequencyAnalyser.getFrequency().get(entry.getKey());
+                selectedNum = entry.getKey();
+            }
+            else {
+                break;
+            }
+        }
+
+        return selectedNum;
     }
 }
