@@ -177,6 +177,60 @@ public class FrequencyAnalyser extends AbstractAnalyser
 
     }
 
+    public void frequency9Training(List<Draw> draws)
+    {
+        System.out.println("Frequency9:");
+        frequency = new HashMap<Integer, Integer>();
+        ValueComparator bvc = new ValueComparator(frequency);
+        TreeMap<Integer, Integer> sortedFrequency = new TreeMap<Integer, Integer>(bvc);
+
+        initMap();
+
+        int win = 0;
+        int winNum = 0;
+        int total = 0;
+        for (Draw draw : draws)
+        {
+            updateFrequency(frequency, draw.getNum1());
+            updateFrequency(frequency, draw.getNum2());
+            updateFrequency(frequency, draw.getNum3());
+            updateFrequency(frequency, draw.getNum4());
+            updateFrequency(frequency, draw.getNum5());
+            updateFrequency(frequency, draw.getNum6());
+            updateFrequency(frequency, draw.getNum7());
+            if (draw.getId() > FIRST_DRAW+TRAIN_SIZE)
+            {
+                sortedFrequency.clear();
+                sortedFrequency.putAll(frequency);
+                Integer[] selection = new Integer[9];
+                int index = 0;
+                for (Integer selected : sortedFrequency.keySet())
+                {
+                    selection[index] = selected;
+                    index++;
+                    if (index > 8)
+                    {
+                        break;
+                    }
+                }
+                int division = draw.checkWin9(selection);
+                if (division > 0)
+                {
+                    win += division;
+                    winNum++;
+                }
+                total++;
+
+            }
+        }
+
+        System.out.println("win:" + win/36);
+        System.out.println("winNum:" + winNum);
+        System.out.println("total:" + total);
+        System.out.println("total(%):" + 1.0 * win/36/ total);
+
+    }
+
     public void frequencyWithSupplyTraining(List<Draw> draws)
     {
         System.out.println("Frequency with Supply:");

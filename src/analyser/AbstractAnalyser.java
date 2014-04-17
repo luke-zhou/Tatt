@@ -15,7 +15,7 @@ import comparator.ValueComparator;
  */
 public abstract class AbstractAnalyser
 {
-    protected static int TRAIN_SIZE = 200;
+    protected static int TRAIN_SIZE = 400;
     protected static int FIRST_DRAW = 604;
 
     int win = 0;

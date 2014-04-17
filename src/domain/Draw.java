@@ -26,6 +26,22 @@ public class Draw
     private Integer supply1;
     private Integer supply2;
 
+    public int checkWin9(Integer[] nums)
+    {
+        int division1 = checkWin8(new Integer[]{nums[0],nums[1],nums[2],nums[3],nums[4],nums[5],nums[6],nums[7]});
+        int division2 = checkWin8(new Integer[]{nums[0],nums[1],nums[2],nums[3],nums[4],nums[5],nums[6],nums[8]});
+        int division3 = checkWin8(new Integer[]{nums[0],nums[1],nums[2],nums[3],nums[4],nums[5],nums[8],nums[7]});
+        int division4 = checkWin8(new Integer[]{nums[0],nums[1],nums[2],nums[3],nums[4],nums[8],nums[6],nums[7]});
+        int division5 = checkWin8(new Integer[]{nums[0],nums[1],nums[2],nums[3],nums[8],nums[5],nums[6],nums[7]});
+        int division6 = checkWin8(new Integer[]{nums[0],nums[1],nums[2],nums[8],nums[4],nums[5],nums[6],nums[7]});
+        int division7 = checkWin8(new Integer[]{nums[0],nums[1],nums[8],nums[3],nums[4],nums[5],nums[6],nums[7]});
+        int division8 = checkWin8(new Integer[]{nums[0],nums[8],nums[2],nums[3],nums[4],nums[5],nums[6],nums[7]});
+        int division9 = checkWin8(new Integer[]{nums[8],nums[1],nums[2],nums[3],nums[4],nums[5],nums[6],nums[7]});
+
+        return division1+division2+division3+division4+division5+division6+division7+division8+division9;
+
+    }
+
     public int checkWin8(Integer[] nums)
     {
         int division1 = checkWin7(new Integer[]{nums[0],nums[1],nums[2],nums[3],nums[4],nums[5],nums[6]});

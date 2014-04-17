@@ -27,16 +27,17 @@ public class Main
 //        analyser.frequency8Training(draws);
 //        analyser.frequencyWithSupplyTraining(draws);
         analyser.analyse(draws);
+        analyser.frequency9Training(draws);
 
-        FrequencyPositionAnalyser frequencyPositionAnalyser = new FrequencyPositionAnalyser();
-        frequencyPositionAnalyser.analyse(draws);
+//        FrequencyPositionAnalyser frequencyPositionAnalyser = new FrequencyPositionAnalyser();
+//        frequencyPositionAnalyser.analyse(draws);
+////
+////        FrequencyPositionAnalyser analyser1 = new FrequencyPositionAnalyser();
+////        analyser1.frequencyPositionTraining(draws);
 //
-//        FrequencyPositionAnalyser analyser1 = new FrequencyPositionAnalyser();
-//        analyser1.frequencyPositionTraining(draws);
-
-
-        AfterFrequencyAnalyser afterFrequencyAnalyser = new AfterFrequencyAnalyser();
-        //afterFrequencyAnalyser.analyse(draws);
-        afterFrequencyAnalyser.train(draws);
+//
+//        AfterFrequencyAnalyser afterFrequencyAnalyser = new AfterFrequencyAnalyser();
+//        //afterFrequencyAnalyser.analyse(draws);
+//        afterFrequencyAnalyser.train(draws);
     }
 }
