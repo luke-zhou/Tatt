@@ -1,9 +1,7 @@
-package analyser;
+package analyser.ozlotto;
 
-import comparator.ValueComparator;
-import domain.Draw;
+import domain.OZDraw;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -13,7 +11,7 @@ import java.util.*;
  * Time: 7:22 PM
  * To change this template use File | Settings | File Templates.
  */
-public class FrequencyPositionAnalyser extends FrequencyAnalyser
+public class FrequencyPositionAnalyserOZ extends FrequencyAnalyserOZ
 {
     private Map<Integer, Integer>[] positions;
 
@@ -33,11 +31,11 @@ public class FrequencyPositionAnalyser extends FrequencyAnalyser
         positions[5] = new HashMap<Integer, Integer>();
         positions[6] = new HashMap<Integer, Integer>();
     }
-    public void analyse(List<Draw> draws)
+    public void analyse(List<OZDraw> OZDraws)
     {
 
     }
-//    public void training(List<Draw> draws)
+//    public void training(List<OZDraw> draws)
 //    {
 //        System.out.println("Frequency Position:");
 //
@@ -57,7 +55,7 @@ public class FrequencyPositionAnalyser extends FrequencyAnalyser
 //        int win = 0;
 //        int winNum = 0;
 //        int total = 0;
-//        for (Draw draw : draws)
+//        for (OZDraw draw : draws)
 //        {
 //            updateFrequency(position1, draw.getNum1());
 //            updateFrequency(position2, draw.getNum2());

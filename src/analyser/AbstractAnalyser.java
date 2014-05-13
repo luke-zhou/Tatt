@@ -1,67 +1,56 @@
 package analyser;
 
-import domain.Draw;
-
-import java.util.*;
-
-import comparator.ValueComparator;
-
 /**
- * Created with IntelliJ IDEA.
- * User: Luke
- * Date: 28/02/2014
- * Time: 11:38 PM
- * To change this template use File | Settings | File Templates.
+ * Created by Luke on 13/05/2014.
  */
 public abstract class AbstractAnalyser
 {
-    protected static int TRAIN_SIZE = 400;
-    protected static int FIRST_DRAW = 604;
+    private int win = 0;
+    private int winNum = 0;
+    private int total = 0;
 
-    int win = 0;
-    int winNum = 0;
-    int total = 0;
-
-    abstract public void analyse(List<Draw> draws);
-    abstract public void train(List<Draw> draws);
-
-    public void randomTraining(List<Draw> draws)
+    public void accumulateWinPrice(int division)
     {
-        System.out.println("Random:");
-        int win = 0;
-        int winNum = 0;
-        int total = 0;
-        for (Draw draw : draws)
-        {
-            Integer[] selection = new Integer[7];
-            int index = 0;
-
-            for (int i =0; i< 7;i++)
-            {
-                selection[i] = (int)(Math.random()*45+1);
-                index++;
-                if (index > 6)
-                {
-                    break;
-                }
-            }
-            int division = draw.checkWin7(selection);
-            if (division > 0)
-            {
-                win += division;
-                winNum++;
-            }
-            total++;
-
-
-        }
-
-        System.out.println("win:" + win);
-        System.out.println("winNum:" + winNum);
-        System.out.println("total:" + total);
-        System.out.println("total(%):" + 1.0 * win / total);
-
+        win += division;
     }
 
+    public void increaseWinNum()
+    {
+        winNum++;
+    }
 
+    public void increaseTotalNum()
+    {
+        total++;
+    }
+
+    public int getWin()
+    {
+        return win;
+    }
+
+    public void setWin(int win)
+    {
+        this.win = win;
+    }
+
+    public int getWinNum()
+    {
+        return winNum;
+    }
+
+    public void setWinNum(int winNum)
+    {
+        this.winNum = winNum;
+    }
+
+    public int getTotal()
+    {
+        return total;
+    }
+
+    public void setTotal(int total)
+    {
+        this.total = total;
+    }
 }

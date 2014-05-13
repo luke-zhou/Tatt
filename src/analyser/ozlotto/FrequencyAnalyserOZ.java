@@ -1,7 +1,7 @@
-package analyser;
+package analyser.ozlotto;
 
 import comparator.ValueComparator;
-import domain.Draw;
+import domain.OZDraw;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,11 +15,11 @@ import java.util.TreeMap;
  * Time: 7:09 PM
  * To change this template use File | Settings | File Templates.
  */
-public class FrequencyAnalyser extends AbstractAnalyser
+public class FrequencyAnalyserOZ extends OZAbstractAnalyser
 {
 
     private Map<Integer, Integer> frequency;
-    public void analyse(List<Draw> draws)
+    public void analyse(List<OZDraw> OZDraws)
     {
         frequency = new HashMap<Integer, Integer>();
         ValueComparator bvc = new ValueComparator(frequency);
@@ -27,15 +27,15 @@ public class FrequencyAnalyser extends AbstractAnalyser
 
         initMap();
 
-        for (Draw draw : draws)
+        for (OZDraw OZDraw : OZDraws)
         {
-            updateFrequency(frequency, draw.getNum1());
-            updateFrequency(frequency, draw.getNum2());
-            updateFrequency(frequency, draw.getNum3());
-            updateFrequency(frequency, draw.getNum4());
-            updateFrequency(frequency, draw.getNum5());
-            updateFrequency(frequency, draw.getNum6());
-            updateFrequency(frequency, draw.getNum7());
+            updateFrequency(frequency, OZDraw.getNum1());
+            updateFrequency(frequency, OZDraw.getNum2());
+            updateFrequency(frequency, OZDraw.getNum3());
+            updateFrequency(frequency, OZDraw.getNum4());
+            updateFrequency(frequency, OZDraw.getNum5());
+            updateFrequency(frequency, OZDraw.getNum6());
+            updateFrequency(frequency, OZDraw.getNum7());
         }
 
         System.out.println(frequency);
@@ -43,7 +43,7 @@ public class FrequencyAnalyser extends AbstractAnalyser
         System.out.println(sortedFrequency);
     }
 
-    public void frequencyWithSupply(List<Draw> draws)
+    public void frequencyWithSupply(List<OZDraw> OZDraws)
     {
         frequency = new HashMap<Integer, Integer>();
         ValueComparator bvc = new ValueComparator(frequency);
@@ -51,17 +51,17 @@ public class FrequencyAnalyser extends AbstractAnalyser
 
         initMap();
 
-        for (Draw draw : draws)
+        for (OZDraw OZDraw : OZDraws)
         {
-            updateFrequency(frequency, draw.getNum1());
-            updateFrequency(frequency, draw.getNum2());
-            updateFrequency(frequency, draw.getNum3());
-            updateFrequency(frequency, draw.getNum4());
-            updateFrequency(frequency, draw.getNum5());
-            updateFrequency(frequency, draw.getNum6());
-            updateFrequency(frequency, draw.getNum7());
-            updateFrequency(frequency, draw.getSupply1());
-            updateFrequency(frequency, draw.getSupply2());
+            updateFrequency(frequency, OZDraw.getNum1());
+            updateFrequency(frequency, OZDraw.getNum2());
+            updateFrequency(frequency, OZDraw.getNum3());
+            updateFrequency(frequency, OZDraw.getNum4());
+            updateFrequency(frequency, OZDraw.getNum5());
+            updateFrequency(frequency, OZDraw.getNum6());
+            updateFrequency(frequency, OZDraw.getNum7());
+            updateFrequency(frequency, OZDraw.getSupply1());
+            updateFrequency(frequency, OZDraw.getSupply2());
         }
 
         System.out.println(frequency);
@@ -69,7 +69,7 @@ public class FrequencyAnalyser extends AbstractAnalyser
         System.out.println(sortedFrequency);
     }
 
-    public void train(List<Draw> draws)
+    public void train(List<OZDraw> OZDraws)
     {
         System.out.println("Frequency7:");
         frequency = new HashMap<Integer, Integer>();
@@ -81,16 +81,16 @@ public class FrequencyAnalyser extends AbstractAnalyser
         int win = 0;
         int winNum = 0;
         int total = 0;
-        for (Draw draw : draws)
+        for (OZDraw OZDraw : OZDraws)
         {
-            updateFrequency(frequency, draw.getNum1());
-            updateFrequency(frequency, draw.getNum2());
-            updateFrequency(frequency, draw.getNum3());
-            updateFrequency(frequency, draw.getNum4());
-            updateFrequency(frequency, draw.getNum5());
-            updateFrequency(frequency, draw.getNum6());
-            updateFrequency(frequency, draw.getNum7());
-            if (draw.getId() > FIRST_DRAW+TRAIN_SIZE)
+            updateFrequency(frequency, OZDraw.getNum1());
+            updateFrequency(frequency, OZDraw.getNum2());
+            updateFrequency(frequency, OZDraw.getNum3());
+            updateFrequency(frequency, OZDraw.getNum4());
+            updateFrequency(frequency, OZDraw.getNum5());
+            updateFrequency(frequency, OZDraw.getNum6());
+            updateFrequency(frequency, OZDraw.getNum7());
+            if (OZDraw.getId() > FIRST_DRAW+TRAIN_SIZE)
             {
                 sortedFrequency.clear();
                 sortedFrequency.putAll(frequency);
@@ -105,7 +105,7 @@ public class FrequencyAnalyser extends AbstractAnalyser
                         break;
                     }
                 }
-                int division = draw.checkWin7(selection);
+                int division = OZDraw.checkWin(selection);
                 if (division > 0)
                 {
                     win += division;
@@ -123,7 +123,7 @@ public class FrequencyAnalyser extends AbstractAnalyser
 
     }
 
-    public void frequency8Training(List<Draw> draws)
+    public void frequency8Training(List<OZDraw> OZDraws)
     {
         System.out.println("Frequency8:");
         frequency = new HashMap<Integer, Integer>();
@@ -135,16 +135,16 @@ public class FrequencyAnalyser extends AbstractAnalyser
         int win = 0;
         int winNum = 0;
         int total = 0;
-        for (Draw draw : draws)
+        for (OZDraw OZDraw : OZDraws)
         {
-            updateFrequency(frequency, draw.getNum1());
-            updateFrequency(frequency, draw.getNum2());
-            updateFrequency(frequency, draw.getNum3());
-            updateFrequency(frequency, draw.getNum4());
-            updateFrequency(frequency, draw.getNum5());
-            updateFrequency(frequency, draw.getNum6());
-            updateFrequency(frequency, draw.getNum7());
-            if (draw.getId() > FIRST_DRAW+TRAIN_SIZE)
+            updateFrequency(frequency, OZDraw.getNum1());
+            updateFrequency(frequency, OZDraw.getNum2());
+            updateFrequency(frequency, OZDraw.getNum3());
+            updateFrequency(frequency, OZDraw.getNum4());
+            updateFrequency(frequency, OZDraw.getNum5());
+            updateFrequency(frequency, OZDraw.getNum6());
+            updateFrequency(frequency, OZDraw.getNum7());
+            if (OZDraw.getId() > FIRST_DRAW+TRAIN_SIZE)
             {
                 sortedFrequency.clear();
                 sortedFrequency.putAll(frequency);
@@ -159,7 +159,7 @@ public class FrequencyAnalyser extends AbstractAnalyser
                         break;
                     }
                 }
-                int division = draw.checkWin8(selection);
+                int division = OZDraw.checkWin8(selection);
                 if (division > 0)
                 {
                     win += division;
@@ -177,7 +177,7 @@ public class FrequencyAnalyser extends AbstractAnalyser
 
     }
 
-    public void frequency9Training(List<Draw> draws)
+    public void frequency9Training(List<OZDraw> OZDraws)
     {
         System.out.println("Frequency9:");
         frequency = new HashMap<Integer, Integer>();
@@ -189,16 +189,16 @@ public class FrequencyAnalyser extends AbstractAnalyser
         int win = 0;
         int winNum = 0;
         int total = 0;
-        for (Draw draw : draws)
+        for (OZDraw OZDraw : OZDraws)
         {
-            updateFrequency(frequency, draw.getNum1());
-            updateFrequency(frequency, draw.getNum2());
-            updateFrequency(frequency, draw.getNum3());
-            updateFrequency(frequency, draw.getNum4());
-            updateFrequency(frequency, draw.getNum5());
-            updateFrequency(frequency, draw.getNum6());
-            updateFrequency(frequency, draw.getNum7());
-            if (draw.getId() > FIRST_DRAW+TRAIN_SIZE)
+            updateFrequency(frequency, OZDraw.getNum1());
+            updateFrequency(frequency, OZDraw.getNum2());
+            updateFrequency(frequency, OZDraw.getNum3());
+            updateFrequency(frequency, OZDraw.getNum4());
+            updateFrequency(frequency, OZDraw.getNum5());
+            updateFrequency(frequency, OZDraw.getNum6());
+            updateFrequency(frequency, OZDraw.getNum7());
+            if (OZDraw.getId() > FIRST_DRAW+TRAIN_SIZE)
             {
                 sortedFrequency.clear();
                 sortedFrequency.putAll(frequency);
@@ -213,7 +213,7 @@ public class FrequencyAnalyser extends AbstractAnalyser
                         break;
                     }
                 }
-                int division = draw.checkWin9(selection);
+                int division = OZDraw.checkWin9(selection);
                 if (division > 0)
                 {
                     win += division;
@@ -231,7 +231,7 @@ public class FrequencyAnalyser extends AbstractAnalyser
 
     }
 
-    public void frequencyWithSupplyTraining(List<Draw> draws)
+    public void frequencyWithSupplyTraining(List<OZDraw> OZDraws)
     {
         System.out.println("Frequency with Supply:");
         frequency = new HashMap<Integer, Integer>();
@@ -243,9 +243,9 @@ public class FrequencyAnalyser extends AbstractAnalyser
         int win = 0;
         int winNum = 0;
         int total = 0;
-        for (Draw draw : draws)
+        for (OZDraw OZDraw : OZDraws)
         {
-            if (draw.getId() > FIRST_DRAW+TRAIN_SIZE)
+            if (OZDraw.getId() > FIRST_DRAW+TRAIN_SIZE)
             {
                 sortedFrequency.clear();
                 sortedFrequency.putAll(frequency);
@@ -260,7 +260,7 @@ public class FrequencyAnalyser extends AbstractAnalyser
                         break;
                     }
                 }
-                int division = draw.checkWin7(selection);
+                int division = OZDraw.checkWin(selection);
                 if (division > 0)
                 {
                     win += division;
@@ -270,15 +270,15 @@ public class FrequencyAnalyser extends AbstractAnalyser
 
             }
 
-            updateFrequency(frequency, draw.getNum1());
-            updateFrequency(frequency, draw.getNum2());
-            updateFrequency(frequency, draw.getNum3());
-            updateFrequency(frequency, draw.getNum4());
-            updateFrequency(frequency, draw.getNum5());
-            updateFrequency(frequency, draw.getNum6());
-            updateFrequency(frequency, draw.getNum7());
-            updateFrequency(frequency, draw.getSupply1());
-            updateFrequency(frequency, draw.getSupply2());
+            updateFrequency(frequency, OZDraw.getNum1());
+            updateFrequency(frequency, OZDraw.getNum2());
+            updateFrequency(frequency, OZDraw.getNum3());
+            updateFrequency(frequency, OZDraw.getNum4());
+            updateFrequency(frequency, OZDraw.getNum5());
+            updateFrequency(frequency, OZDraw.getNum6());
+            updateFrequency(frequency, OZDraw.getNum7());
+            updateFrequency(frequency, OZDraw.getSupply1());
+            updateFrequency(frequency, OZDraw.getSupply2());
 
         }
 

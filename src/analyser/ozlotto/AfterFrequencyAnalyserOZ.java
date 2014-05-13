@@ -1,7 +1,7 @@
-package analyser;
+package analyser.ozlotto;
 
 import comparator.ValueComparator;
-import domain.Draw;
+import domain.OZDraw;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,26 +15,26 @@ import java.util.TreeMap;
  * Time: 9:20 PM
  * To change this template use File | Settings | File Templates.
  */
-public class AfterFrequencyAnalyser extends AbstractAnalyser
+public class AfterFrequencyAnalyserOZ extends OZAbstractAnalyser
 {
     private Map<Integer, Map<Integer, Integer>> afterFrequencyMap;
 
     @Override
-    public void analyse(List<Draw> draws)
+    public void analyse(List<OZDraw> OZDraws)
     {
 
         afterFrequencyMap = initialMap();
 
-        for (Draw draw : draws)
+        for (OZDraw OZDraw : OZDraws)
         {
-            updateFrequency(draw.getNum1(), draw.getNum2());
-            updateFrequency(draw.getNum2(), draw.getNum3());
-            updateFrequency(draw.getNum3(), draw.getNum4());
-            updateFrequency(draw.getNum4(), draw.getNum5());
-            updateFrequency(draw.getNum5(), draw.getNum6());
-            updateFrequency(draw.getNum6(), draw.getNum7());
-            updateFrequency(draw.getNum7(), draw.getSupply1());
-            updateFrequency(draw.getNum7(), draw.getSupply2());
+            updateFrequency(OZDraw.getNum1(), OZDraw.getNum2());
+            updateFrequency(OZDraw.getNum2(), OZDraw.getNum3());
+            updateFrequency(OZDraw.getNum3(), OZDraw.getNum4());
+            updateFrequency(OZDraw.getNum4(), OZDraw.getNum5());
+            updateFrequency(OZDraw.getNum5(), OZDraw.getNum6());
+            updateFrequency(OZDraw.getNum6(), OZDraw.getNum7());
+            updateFrequency(OZDraw.getNum7(), OZDraw.getSupply1());
+            updateFrequency(OZDraw.getNum7(), OZDraw.getSupply2());
         }
 
         printResult();
@@ -75,21 +75,21 @@ public class AfterFrequencyAnalyser extends AbstractAnalyser
     }
 
     @Override
-    public void train(List<Draw> draws)
+    public void train(List<OZDraw> OZDraws)
     {
-        FrequencyAnalyser frequencyAnalyser = new FrequencyAnalyser();
-        frequencyAnalyser.analyse(draws);
+        FrequencyAnalyserOZ frequencyAnalyser = new FrequencyAnalyserOZ();
+        frequencyAnalyser.analyse(OZDraws);
 
-        analyse(draws);
+        analyse(OZDraws);
 
         System.out.println("After Frequency:");
-        for (int j = TRAIN_SIZE; j < draws.size(); j++)
+        for (int j = TRAIN_SIZE; j < OZDraws.size(); j++)
         {
 
 
             Integer[] selection = new Integer[7];
             selection[0] = (int) (Math.random() * 45 + 1);
-            //selection[0] = draws.get(j).getNum1();
+            //selection[0] = OZDraws.get(j).getNum1();
             for (int i = 0; i < 6; i++)
             {
                 ValueComparator bvc = new ValueComparator(afterFrequencyMap.get(selection[i]));
@@ -99,22 +99,22 @@ public class AfterFrequencyAnalyser extends AbstractAnalyser
 
             }
 
-            int division = draws.get(j).checkWin7(selection);
+            int division = OZDraws.get(j).checkWin(selection);
             if (division > 0)
             {
-                win += division;
-                winNum++;
+                accumulateWinPrice(division);
+                increaseWinNum();
             }
-            total++;
+            increaseTotalNum();
         }
 
-        System.out.println("win:" + win);
-        System.out.println("winNum:" + winNum);
-        System.out.println("total:" + total);
-        System.out.println("total(%):" + 1.0 * win / total);
+        System.out.println("win:" + getWin());
+        System.out.println("winNum:" + getWinNum());
+        System.out.println("total:" + getTotal());
+        System.out.println("total(%):" + 1.0 * getWin() / getTotal());
     }
 
-    private Integer selectNumByMap(TreeMap<Integer, Integer> sortedFrequency, FrequencyAnalyser frequencyAnalyser)
+    private Integer selectNumByMap(TreeMap<Integer, Integer> sortedFrequency, FrequencyAnalyserOZ frequencyAnalyser)
     {
         Integer value=sortedFrequency.firstEntry().getValue();
         Integer frequency=0;

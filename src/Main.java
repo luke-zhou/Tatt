@@ -1,8 +1,5 @@
-import analyser.AbstractAnalyser;
-import analyser.AfterFrequencyAnalyser;
-import analyser.FrequencyAnalyser;
-import analyser.FrequencyPositionAnalyser;
-import domain.Draw;
+import analyser.ozlotto.FrequencyAnalyserOZ;
+import domain.OZDraw;
 import util.CsvUtil;
 
 import java.util.List;
@@ -19,25 +16,25 @@ public class Main
     private static String OZ_LOTTO_FILE = "data/OzLotto.csv";
     public static void main(String[] args)
     {
-        List<Draw> draws = CsvUtil.loadData(OZ_LOTTO_FILE);
+        List<OZDraw> OZDraws = CsvUtil.loadData(OZ_LOTTO_FILE);
 
-        FrequencyAnalyser analyser = new FrequencyAnalyser();
-        analyser.randomTraining(draws);
-//        analyser.train(draws);
-//        analyser.frequency8Training(draws);
-//        analyser.frequencyWithSupplyTraining(draws);
-        analyser.analyse(draws);
-        analyser.frequency9Training(draws);
+        FrequencyAnalyserOZ analyser = new FrequencyAnalyserOZ();
+        analyser.randomTraining(OZDraws);
+//        analyser.train(OZDraws);
+//        analyser.frequency8Training(OZDraws);
+//        analyser.frequencyWithSupplyTraining(OZDraws);
+        analyser.analyse(OZDraws);
+        analyser.frequency9Training(OZDraws);
 
-//        FrequencyPositionAnalyser frequencyPositionAnalyser = new FrequencyPositionAnalyser();
-//        frequencyPositionAnalyser.analyse(draws);
+//        FrequencyPositionAnalyserOZ frequencyPositionAnalyser = new FrequencyPositionAnalyserOZ();
+//        frequencyPositionAnalyser.analyse(OZDraws);
 ////
-////        FrequencyPositionAnalyser analyser1 = new FrequencyPositionAnalyser();
-////        analyser1.frequencyPositionTraining(draws);
+////        FrequencyPositionAnalyserOZ analyser1 = new FrequencyPositionAnalyserOZ();
+////        analyser1.frequencyPositionTraining(OZDraws);
 //
 //
-//        AfterFrequencyAnalyser afterFrequencyAnalyser = new AfterFrequencyAnalyser();
-//        //afterFrequencyAnalyser.analyse(draws);
-//        afterFrequencyAnalyser.train(draws);
+//        AfterFrequencyAnalyserOZ afterFrequencyAnalyser = new AfterFrequencyAnalyserOZ();
+//        //afterFrequencyAnalyser.analyse(OZDraws);
+//        afterFrequencyAnalyser.train(OZDraws);
     }
 }

@@ -1,7 +1,7 @@
 package util;
 
 import au.com.bytecode.opencsv.CSVReader;
-import domain.Draw;
+import domain.OZDraw;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -20,9 +20,9 @@ import java.util.List;
  */
 public class CsvUtil
 {
-    public static List<Draw> loadData(String fileName)
+    public static List<OZDraw> loadData(String fileName)
     {
-        List<Draw> draws = new ArrayList<Draw>();
+        List<OZDraw> OZDraws = new ArrayList<OZDraw>();
         try
         {
             CSVReader reader = new CSVReader(new FileReader(fileName));
@@ -30,20 +30,20 @@ public class CsvUtil
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             reader.readNext();
             while ((nextLine = reader.readNext()) != null) {
-                Draw draw = new Draw();
-                draw.setId(Integer.valueOf(nextLine[0]));
-                draw.setDate(sdf.parse(nextLine[1]));
-                draw.setNum1(Integer.valueOf(nextLine[2]));
-                draw.setNum2(Integer.valueOf(nextLine[3]));
-                draw.setNum3(Integer.valueOf(nextLine[4]));
-                draw.setNum4(Integer.valueOf(nextLine[5]));
-                draw.setNum5(Integer.valueOf(nextLine[6]));
-                draw.setNum6(Integer.valueOf(nextLine[7]));
-                draw.setNum7(Integer.valueOf(nextLine[8]));
-                draw.setSupply1(Integer.valueOf(nextLine[9]));
-                draw.setSupply2(Integer.valueOf(nextLine[10]));
+                OZDraw OZDraw = new OZDraw();
+                OZDraw.setId(Integer.valueOf(nextLine[0]));
+                OZDraw.setDate(sdf.parse(nextLine[1]));
+                OZDraw.setNum1(Integer.valueOf(nextLine[2]));
+                OZDraw.setNum2(Integer.valueOf(nextLine[3]));
+                OZDraw.setNum3(Integer.valueOf(nextLine[4]));
+                OZDraw.setNum4(Integer.valueOf(nextLine[5]));
+                OZDraw.setNum5(Integer.valueOf(nextLine[6]));
+                OZDraw.setNum6(Integer.valueOf(nextLine[7]));
+                OZDraw.setNum7(Integer.valueOf(nextLine[8]));
+                OZDraw.setSupply1(Integer.valueOf(nextLine[9]));
+                OZDraw.setSupply2(Integer.valueOf(nextLine[10]));
 
-                draws.add(draw);
+                OZDraws.add(OZDraw);
             }
         } catch (FileNotFoundException e)
         {
@@ -56,6 +56,6 @@ public class CsvUtil
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
 
-        return draws;
+        return OZDraws;
     }
 }
