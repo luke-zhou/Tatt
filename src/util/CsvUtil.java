@@ -2,6 +2,7 @@ package util;
 
 import au.com.bytecode.opencsv.CSVReader;
 import domain.OZDraw;
+import domain.PowerBallDraw;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -20,7 +21,7 @@ import java.util.List;
  */
 public class CsvUtil
 {
-    public static List<OZDraw> loadData(String fileName)
+    public static List<OZDraw> loadOZData(String fileName)
     {
         List<OZDraw> OZDraws = new ArrayList<OZDraw>();
         try
@@ -57,5 +58,42 @@ public class CsvUtil
         }
 
         return OZDraws;
+    }
+
+    public static List<PowerBallDraw> loadPowerData(String fileName)
+    {
+        List<PowerBallDraw> draws = new ArrayList<PowerBallDraw>();
+        try
+        {
+            CSVReader reader = new CSVReader(new FileReader(fileName));
+            String [] nextLine;
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+            reader.readNext();
+            while ((nextLine = reader.readNext()) != null) {
+                PowerBallDraw draw = new PowerBallDraw();
+                draw.setId(Integer.valueOf(nextLine[0]));
+                draw.setDate(sdf.parse(nextLine[1]));
+                draw.setNum1(Integer.valueOf(nextLine[2]));
+                draw.setNum2(Integer.valueOf(nextLine[3]));
+                draw.setNum3(Integer.valueOf(nextLine[4]));
+                draw.setNum4(Integer.valueOf(nextLine[5]));
+                draw.setNum5(Integer.valueOf(nextLine[6]));
+                draw.setNum6(Integer.valueOf(nextLine[7]));
+                draw.setPowerBall(Integer.valueOf(nextLine[8]));
+
+                draws.add(draw);
+            }
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (IOException e)
+        {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (ParseException e)
+        {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+        return draws;
     }
 }

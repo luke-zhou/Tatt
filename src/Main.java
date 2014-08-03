@@ -1,5 +1,7 @@
 import analyser.ozlotto.FrequencyAnalyserOZ;
+import analyser.powerball.PowerBallFrequencyAnalyser;
 import domain.OZDraw;
+import domain.PowerBallDraw;
 import util.CsvUtil;
 
 import java.util.List;
@@ -14,9 +16,16 @@ import java.util.List;
 public class Main
 {
     private static String OZ_LOTTO_FILE = "data/OzLotto.csv";
+    private static String POWER_BALL_FILE = "data/powerball.csv";
     public static void main(String[] args)
     {
-        List<OZDraw> OZDraws = CsvUtil.loadData(OZ_LOTTO_FILE);
+        analyseOZ();
+        //analysePowerBall();
+    }
+
+    private static void analyseOZ()
+    {
+        List<OZDraw> OZDraws = CsvUtil.loadOZData(OZ_LOTTO_FILE);
 
         FrequencyAnalyserOZ analyser = new FrequencyAnalyserOZ();
         analyser.randomTraining(OZDraws);
@@ -25,6 +34,30 @@ public class Main
 //        analyser.frequencyWithSupplyTraining(OZDraws);
         analyser.analyse(OZDraws);
         analyser.frequency9Training(OZDraws);
+
+//        FrequencyPositionAnalyserOZ frequencyPositionAnalyser = new FrequencyPositionAnalyserOZ();
+//        frequencyPositionAnalyser.analyse(OZDraws);
+////
+////        FrequencyPositionAnalyserOZ analyser1 = new FrequencyPositionAnalyserOZ();
+////        analyser1.frequencyPositionTraining(OZDraws);
+//
+//
+//        AfterFrequencyAnalyserOZ afterFrequencyAnalyser = new AfterFrequencyAnalyserOZ();
+//        //afterFrequencyAnalyser.analyse(OZDraws);
+//        afterFrequencyAnalyser.train(OZDraws);
+    }
+
+    private static void analysePowerBall()
+    {
+        List<PowerBallDraw> draws = CsvUtil.loadPowerData(POWER_BALL_FILE);
+
+        PowerBallFrequencyAnalyser analyser = new PowerBallFrequencyAnalyser();
+        analyser.randomTraining(draws);
+//        analyser.train(OZDraws);
+//        analyser.frequency8Training(OZDraws);
+//        analyser.frequencyWithSupplyTraining(OZDraws);
+        analyser.analyse(draws);
+        //analyser.frequency9Training(OZDraws);
 
 //        FrequencyPositionAnalyserOZ frequencyPositionAnalyser = new FrequencyPositionAnalyserOZ();
 //        frequencyPositionAnalyser.analyse(OZDraws);

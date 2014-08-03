@@ -7,6 +7,9 @@ import java.util.Arrays;
  */
 public class PowerBallDraw extends Draw
 {
+    public static int MAX_NUM = 40;
+    public static int MAX_POWER_BALL_NUM = 20;
+    public static int NUM_OF_NUMBERS = 6;
 
     private Integer num1;
     private Integer num2;
@@ -16,9 +19,9 @@ public class PowerBallDraw extends Draw
     private Integer num6;
     private Integer powerBall;
 
-    int checkWin(PowerBallDraw draw)
+    public int checkWin(PowerBallDraw draw)
     {
-        Integer[] thisDraw = new Integer[6];
+        Integer[] thisDraw = new Integer[NUM_OF_NUMBERS];
 
         thisDraw[0] = num1;
         thisDraw[1] = num2;
@@ -27,21 +30,20 @@ public class PowerBallDraw extends Draw
         thisDraw[4] = num5;
         thisDraw[5] = num6;
 
-        Integer[] testedDraw = new Integer[6];
-        testedDraw[0] = num1;
-        testedDraw[1] = num2;
-        testedDraw[2] = num3;
-        testedDraw[3] = num4;
-        testedDraw[4] = num5;
-        testedDraw[5] = num6;
+        Integer[] testedDraw = new Integer[NUM_OF_NUMBERS];
+        testedDraw[0] = draw.getNum1();
+        testedDraw[1] = draw.getNum2();
+        testedDraw[2] = draw.getNum3();
+        testedDraw[3] = draw.getNum4();
+        testedDraw[4] = draw.getNum5();
+        testedDraw[5] = draw.getNum6();
 
         Arrays.sort(thisDraw);
         Arrays.sort(testedDraw);
 
         int count = 0;
-        int numberOfBalls=6;
 
-        for (int j = 0, i = 0; i < numberOfBalls && j < numberOfBalls; )
+        for (int j = 0, i = 0; i < NUM_OF_NUMBERS && j < NUM_OF_NUMBERS; )
         {
             if (thisDraw[i] < testedDraw[j])
             {
@@ -60,7 +62,7 @@ public class PowerBallDraw extends Draw
         }
 
 
-        boolean powerBallCheck = powerBall==draw.powerBall;
+        boolean powerBallCheck = powerBall == draw.powerBall;
 
 
         if (count == 2 && powerBallCheck)
