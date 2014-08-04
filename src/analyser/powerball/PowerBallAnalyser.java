@@ -26,7 +26,7 @@ public class PowerBallAnalyser
 
     public void analyse()
     {
-        List<PowerBallDraw> powerBallDraws = CsvUtil.loadPowerData(dataFileName);
+        powerBallDraws = CsvUtil.loadPowerData(dataFileName);
         frequency = new HashMap<Integer, Integer>();
         ValueComparator bvc = new ValueComparator(frequency);
         TreeMap<Integer, Integer> sortedFrequency = new TreeMap<Integer, Integer>(bvc);
