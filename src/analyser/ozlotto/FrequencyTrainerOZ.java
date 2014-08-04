@@ -15,7 +15,7 @@ import java.util.TreeMap;
  * Time: 7:09 PM
  * To change this template use File | Settings | File Templates.
  */
-public class FrequencyAnalyserOZ extends OZAbstractAnalyser
+public class FrequencyTrainerOZ extends OZAbstractTrainer
 {
 
     private Map<Integer, Integer> frequency;

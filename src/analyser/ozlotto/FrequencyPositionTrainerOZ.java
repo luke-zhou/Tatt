@@ -11,7 +11,7 @@ import java.util.*;
  * Time: 7:22 PM
  * To change this template use File | Settings | File Templates.
  */
-public class FrequencyPositionAnalyserOZ extends FrequencyAnalyserOZ
+public class FrequencyPositionTrainerOZ extends FrequencyTrainerOZ
 {
     private Map<Integer, Integer>[] positions;
 

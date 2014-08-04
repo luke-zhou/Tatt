@@ -3,7 +3,7 @@ package analyser;
 /**
  * Created by Luke on 13/05/2014.
  */
-public abstract class AbstractAnalyser
+public abstract class AbstractTrainer
 {
     public int win = 0;
     public int winNum = 0;
@@ -11,16 +11,11 @@ public abstract class AbstractAnalyser
 
     public void accumulateWinPrice(int division)
     {
-        win += division;
-    }
-
-    public void increaseWinNum()
-    {
-        winNum++;
-    }
-
-    public void increaseTotalNum()
-    {
+        if (division > 0)
+        {
+            win += division;
+            winNum++;
+        }
         total++;
     }
 

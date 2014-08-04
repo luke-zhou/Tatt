@@ -1,6 +1,6 @@
 package analyser.ozlotto;
 
-import analyser.AbstractAnalyser;
+import analyser.AbstractTrainer;
 import domain.OZDraw;
 
 import java.util.*;
@@ -12,7 +12,7 @@ import java.util.*;
  * Time: 11:38 PM
  * To change this template use File | Settings | File Templates.
  */
-public abstract class OZAbstractAnalyser extends AbstractAnalyser
+public abstract class OZAbstractTrainer extends AbstractTrainer
 {
     protected static int TRAIN_SIZE = 400;
     protected static int FIRST_DRAW = 604;

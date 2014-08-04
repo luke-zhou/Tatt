@@ -15,7 +15,7 @@ import java.util.TreeMap;
  * Time: 9:20 PM
  * To change this template use File | Settings | File Templates.
  */
-public class AfterFrequencyAnalyserOZ extends OZAbstractAnalyser
+public class AfterFrequencyTrainerOZ extends OZAbstractTrainer
 {
     private Map<Integer, Map<Integer, Integer>> afterFrequencyMap;
 
@@ -77,7 +77,7 @@ public class AfterFrequencyAnalyserOZ extends OZAbstractAnalyser
     @Override
     public void train(List<OZDraw> OZDraws)
     {
-        FrequencyAnalyserOZ frequencyAnalyser = new FrequencyAnalyserOZ();
+        FrequencyTrainerOZ frequencyAnalyser = new FrequencyTrainerOZ();
         frequencyAnalyser.analyse(OZDraws);
 
         analyse(OZDraws);
@@ -100,12 +100,7 @@ public class AfterFrequencyAnalyserOZ extends OZAbstractAnalyser
             }
 
             int division = OZDraws.get(j).checkWin(selection);
-            if (division > 0)
-            {
-                accumulateWinPrice(division);
-                increaseWinNum();
-            }
-            increaseTotalNum();
+            accumulateWinPrice(division);
         }
 
         System.out.println("win:" + win);
@@ -114,22 +109,23 @@ public class AfterFrequencyAnalyserOZ extends OZAbstractAnalyser
         System.out.println("total(%):" + 1.0 * win / total);
     }
 
-    private Integer selectNumByMap(TreeMap<Integer, Integer> sortedFrequency, FrequencyAnalyserOZ frequencyAnalyser)
+    private Integer selectNumByMap(TreeMap<Integer, Integer> sortedFrequency, FrequencyTrainerOZ frequencyAnalyser)
     {
-        Integer value=sortedFrequency.firstEntry().getValue();
-        Integer frequency=0;
-        Integer selectedNum=0;
-        for (int i =0; i<sortedFrequency.size();i++)
+        Integer value = sortedFrequency.firstEntry().getValue();
+        Integer frequency = 0;
+        Integer selectedNum = 0;
+        for (int i = 0; i < sortedFrequency.size(); i++)
         {
-            Map.Entry<Integer,Integer> entry = sortedFrequency.pollFirstEntry();
+            Map.Entry<Integer, Integer> entry = sortedFrequency.pollFirstEntry();
 
             if (entry.getValue() == value
-                    && (frequencyAnalyser.getFrequency().get(entry.getKey())>frequency))
+                    && (frequencyAnalyser.getFrequency().get(entry.getKey()) > frequency))
             {
                 frequency = frequencyAnalyser.getFrequency().get(entry.getKey());
                 selectedNum = entry.getKey();
             }
-            else {
+            else
+            {
                 break;
             }
         }

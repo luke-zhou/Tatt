@@ -1,7 +1,6 @@
-import analyser.ozlotto.FrequencyAnalyserOZ;
-import analyser.powerball.PowerBallFrequencyAnalyser;
+import analyser.ozlotto.FrequencyTrainerOZ;
+import analyser.powerball.PowerBallAnalyser;
 import domain.OZDraw;
-import domain.PowerBallDraw;
 import util.CsvUtil;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class Main
     {
         List<OZDraw> OZDraws = CsvUtil.loadOZData(OZ_LOTTO_FILE);
 
-        FrequencyAnalyserOZ analyser = new FrequencyAnalyserOZ();
+        FrequencyTrainerOZ analyser = new FrequencyTrainerOZ();
         analyser.randomTraining(OZDraws);
 //        analyser.train(OZDraws);
 //        analyser.frequency8Training(OZDraws);
@@ -49,14 +48,11 @@ public class Main
 
     private static void analysePowerBall()
     {
-        List<PowerBallDraw> draws = CsvUtil.loadPowerData(POWER_BALL_FILE);
-
-        PowerBallFrequencyAnalyser analyser = new PowerBallFrequencyAnalyser();
-        analyser.randomTraining(draws);
+        PowerBallAnalyser analyser = new PowerBallAnalyser(POWER_BALL_FILE);
+        //analyser.randomTraining(draws);
 //        analyser.train(OZDraws);
 //        analyser.frequency8Training(OZDraws);
 //        analyser.frequencyWithSupplyTraining(OZDraws);
-        analyser.analyse(draws);
         //analyser.frequency9Training(OZDraws);
 
 //        FrequencyPositionAnalyserOZ frequencyPositionAnalyser = new FrequencyPositionAnalyserOZ();
