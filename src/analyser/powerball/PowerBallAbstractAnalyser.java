@@ -38,6 +38,7 @@ public abstract class PowerBallAbstractAnalyser extends AbstractAnalyser
                 selection[i] = tempSelection;
 
             }
+            int powderBall = (int) (Math.random() * PowerBallDraw.MAX_POWER_BALL_NUM + 1);
             PowerBallDraw testedDraw = new PowerBallDraw();
             testedDraw.setNum1(selection[0]);
             testedDraw.setNum2(selection[1]);
@@ -45,6 +46,7 @@ public abstract class PowerBallAbstractAnalyser extends AbstractAnalyser
             testedDraw.setNum4(selection[3]);
             testedDraw.setNum5(selection[4]);
             testedDraw.setNum6(selection[5]);
+            testedDraw.setPowerBall(powderBall);
             int division = draw.checkWin(testedDraw);
             if (division > 0)
             {
@@ -56,10 +58,7 @@ public abstract class PowerBallAbstractAnalyser extends AbstractAnalyser
 
         }
 
-        System.out.println("win:" + getWin());
-        System.out.println("winNum:" + getWinNum());
-        System.out.println("total:" + getTotal());
-        System.out.println("total(%):" + 1.0 * getWin() / getTotal());
+        printOutResult();
 
     }
 

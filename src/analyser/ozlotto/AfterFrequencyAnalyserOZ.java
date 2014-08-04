@@ -108,10 +108,10 @@ public class AfterFrequencyAnalyserOZ extends OZAbstractAnalyser
             increaseTotalNum();
         }
 
-        System.out.println("win:" + getWin());
-        System.out.println("winNum:" + getWinNum());
-        System.out.println("total:" + getTotal());
-        System.out.println("total(%):" + 1.0 * getWin() / getTotal());
+        System.out.println("win:" + win);
+        System.out.println("winNum:" + winNum);
+        System.out.println("total:" + total);
+        System.out.println("total(%):" + 1.0 * win / total);
     }
 
     private Integer selectNumByMap(TreeMap<Integer, Integer> sortedFrequency, FrequencyAnalyserOZ frequencyAnalyser)

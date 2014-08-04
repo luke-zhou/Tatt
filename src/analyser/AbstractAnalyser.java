@@ -23,4 +23,12 @@ public abstract class AbstractAnalyser
     {
         total++;
     }
+
+    public void printOutResult()
+    {
+        System.out.println("win:" + win);
+        System.out.println("winNum:" + winNum);
+        System.out.println("total:" + total);
+        System.out.println("total(%):" + 1.0 * win / total);
+    }
 }
