@@ -1,5 +1,6 @@
 package analyser.powerball;
 
+import analyser.AbstractAnalyser;
 import comparator.ValueComparator;
 import domain.PowerBallDraw;
 import util.CsvUtil;
@@ -12,9 +13,9 @@ import java.util.TreeMap;
 /**
  * Created by Luke on 13/05/2014.
  */
-public class PowerBallAnalyser
+public class PowerBallAnalyser extends AbstractAnalyser
 {
-    private Map<Integer, Integer> frequency;
+
     private String dataFileName;
     private List<PowerBallDraw> powerBallDraws;
 
@@ -49,13 +50,7 @@ public class PowerBallAnalyser
 
     }
 
-    private void initMap()
-    {
-        for (int i = 1; i <= PowerBallDraw.MAX_NUM; i++)
-        {
-            frequency.put(i, 0);
-        }
-    }
+
 
     protected void updateFrequency(Map<Integer, Integer> frequency, Integer num)
     {

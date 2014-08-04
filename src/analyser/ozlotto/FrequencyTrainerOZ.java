@@ -38,7 +38,7 @@ public class FrequencyTrainerOZ extends OZAbstractTrainer
             updateFrequency(frequency, OZDraw.getNum7());
         }
 
-        System.out.println(frequency);
+        //System.out.println(frequency);
         sortedFrequency.putAll(frequency);
         System.out.println(sortedFrequency);
     }

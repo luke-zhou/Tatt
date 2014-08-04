@@ -8,12 +8,10 @@ import java.util.List;
 /**
  * Created by Luke on 13/05/2014.
  */
-public abstract class PowerBallAbstractTrainer extends AbstractTrainer
+public abstract class PowerBallRandomTrainer extends AbstractTrainer
 {
     protected static int TRAIN_SIZE = 400;
     protected static int FIRST_DRAW = 877;
-
-    abstract public void train(List<PowerBallDraw> PowerBallDraws);
 
     public void baseLine(List<PowerBallDraw> PowerBallDraws)
     {
