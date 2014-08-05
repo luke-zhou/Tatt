@@ -19,9 +19,9 @@ public abstract class PowerBallRandomTrainer extends AbstractTrainer
 
         for (PowerBallDraw draw : PowerBallDraws)
         {
-            int[] selection = new int[PowerBallDraw.NUM_OF_NUMBERS];
+            int[] selection = new int[PowerBallDraw.NUM_OF_BALL];
 
-            for (int i = 0; i < PowerBallDraw.NUM_OF_NUMBERS; i++)
+            for (int i = 0; i < PowerBallDraw.NUM_OF_BALL; i++)
             {
                 int tempSelection = (int) (Math.random() * PowerBallDraw.MAX_NUM + 1);
                 if(isNumberSelected(tempSelection, selection))

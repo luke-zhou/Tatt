@@ -9,7 +9,7 @@ public class PowerBallDraw extends Draw
 {
     public static int MAX_NUM = 40;
     public static int MAX_POWER_BALL_NUM = 20;
-    public static int NUM_OF_NUMBERS = 6;
+    public static int NUM_OF_BALL = 6;
 
     private Integer num1;
     private Integer num2;
@@ -21,7 +21,7 @@ public class PowerBallDraw extends Draw
 
     public int checkWin(PowerBallDraw draw)
     {
-        Integer[] thisDraw = new Integer[NUM_OF_NUMBERS];
+        Integer[] thisDraw = new Integer[NUM_OF_BALL];
 
         thisDraw[0] = num1;
         thisDraw[1] = num2;
@@ -30,7 +30,7 @@ public class PowerBallDraw extends Draw
         thisDraw[4] = num5;
         thisDraw[5] = num6;
 
-        Integer[] testedDraw = new Integer[NUM_OF_NUMBERS];
+        Integer[] testedDraw = new Integer[NUM_OF_BALL];
         testedDraw[0] = draw.getNum1();
         testedDraw[1] = draw.getNum2();
         testedDraw[2] = draw.getNum3();
@@ -43,7 +43,7 @@ public class PowerBallDraw extends Draw
 
         int count = 0;
 
-        for (int j = 0, i = 0; i < NUM_OF_NUMBERS && j < NUM_OF_NUMBERS; )
+        for (int j = 0, i = 0; i < NUM_OF_BALL && j < NUM_OF_BALL; )
         {
             if (thisDraw[i] < testedDraw[j])
             {

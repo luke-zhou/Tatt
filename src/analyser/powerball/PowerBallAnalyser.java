@@ -15,14 +15,11 @@ import java.util.TreeMap;
  */
 public class PowerBallAnalyser extends AbstractAnalyser
 {
-
-    private String dataFileName;
     private List<PowerBallDraw> powerBallDraws;
 
     public PowerBallAnalyser(String dataFileName)
     {
-        this.dataFileName = dataFileName;
-        analyse();
+        super(dataFileName);
     }
 
     public void analyse()
@@ -50,12 +47,10 @@ public class PowerBallAnalyser extends AbstractAnalyser
 
     }
 
-
-
-    protected void updateFrequency(Map<Integer, Integer> frequency, Integer num)
+    @Override
+    protected int getMaxDrawNum()
     {
-        Integer value = frequency.get(num) + 1;
-        frequency.put(num, value);
+        return PowerBallDraw.MAX_NUM;
     }
 
     public List<PowerBallDraw> getPowerBallDraws()

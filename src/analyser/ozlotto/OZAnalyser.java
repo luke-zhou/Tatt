@@ -3,6 +3,7 @@ package analyser.ozlotto;
 import analyser.AbstractAnalyser;
 import comparator.ValueComparator;
 import domain.OZDraw;
+import domain.PowerBallDraw;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,9 +15,14 @@ import java.util.TreeMap;
  */
 public class OZAnalyser extends AbstractAnalyser
 {
-    private Map<Integer, Integer> frequency;
+    private List<OZDraw> ozDraws;
 
-    public void analyse(List<OZDraw> OZDraws)
+    public OZAnalyser(String dataFileName)
+    {
+        super(dataFileName);
+    }
+
+    public void analyse()
     {
         frequency = new HashMap<Integer, Integer>();
         ValueComparator bvc = new ValueComparator(frequency);
@@ -24,19 +30,26 @@ public class OZAnalyser extends AbstractAnalyser
 
         initMap();
 
-        for (OZDraw OZDraw : OZDraws)
+        for (OZDraw ozDraw : ozDraws)
         {
-            updateFrequency(frequency, OZDraw.getNum1());
-            updateFrequency(frequency, OZDraw.getNum2());
-            updateFrequency(frequency, OZDraw.getNum3());
-            updateFrequency(frequency, OZDraw.getNum4());
-            updateFrequency(frequency, OZDraw.getNum5());
-            updateFrequency(frequency, OZDraw.getNum6());
-            updateFrequency(frequency, OZDraw.getNum7());
+            updateFrequency(frequency, ozDraw.getNum1());
+            updateFrequency(frequency, ozDraw.getNum2());
+            updateFrequency(frequency, ozDraw.getNum3());
+            updateFrequency(frequency, ozDraw.getNum4());
+            updateFrequency(frequency, ozDraw.getNum5());
+            updateFrequency(frequency, ozDraw.getNum6());
+            updateFrequency(frequency, ozDraw.getNum7());
         }
 
         //System.out.println(frequency);
         sortedFrequency.putAll(frequency);
         System.out.println(sortedFrequency);
     }
+
+    @Override
+    protected int getMaxDrawNum()
+    {
+        return OZDraw.MAX_NUM;
+    }
+
 }

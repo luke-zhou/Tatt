@@ -11,6 +11,8 @@ import java.util.Arrays;
  */
 public class OZDraw extends Draw
 {
+    public static int MAX_NUM = 45;
+    public static int NUM_OF_BALL = 7;
 
     private Integer num1;
     private Integer num2;

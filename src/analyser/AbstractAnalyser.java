@@ -10,6 +10,13 @@ import java.util.Map;
 public abstract class AbstractAnalyser
 {
     protected Map<Integer, Integer> frequency;
+    protected String dataFileName;
+
+    public AbstractAnalyser(String dataFileName)
+    {
+        this.dataFileName = dataFileName;
+        analyse();
+    }
 
     protected void initMap()
     {
@@ -19,5 +26,13 @@ public abstract class AbstractAnalyser
         }
     }
 
+    protected void updateFrequency(Map<Integer, Integer> frequency, Integer num)
+    {
+        Integer value = frequency.get(num) + 1;
+        frequency.put(num, value);
+    }
+
     protected abstract int getMaxDrawNum();
+
+    protected abstract void analyse();
 }
