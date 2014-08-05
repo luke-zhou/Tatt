@@ -1,4 +1,5 @@
 import analyser.ozlotto.FrequencyTrainerOZ;
+import analyser.ozlotto.OZAnalyser;
 import analyser.powerball.PowerBallAnalyser;
 import analyser.powerball.PowerBallFrequencyTrainer;
 import analyser.powerball.PowerBallRandomTrainer;
@@ -20,21 +21,23 @@ public class Main
     private static String POWER_BALL_FILE = "data/powerball.csv";
     public static void main(String[] args)
     {
-        //analyseOZ();
-        analysePowerBall();
+        analyseOZ();
+        //analysePowerBall();
     }
 
     private static void analyseOZ()
     {
-        List<OZDraw> OZDraws = CsvUtil.loadOZData(OZ_LOTTO_FILE);
+        OZAnalyser analyser = new OZAnalyser(OZ_LOTTO_FILE);
+        FrequencyTrainerOZ baseLine = new FrequencyTrainerOZ();
+        baseLine.train(analyser.getOzDraws());
 
-        FrequencyTrainerOZ analyser = new FrequencyTrainerOZ();
-        analyser.randomTraining(OZDraws);
-//        analyser.train(OZDraws);
-//        analyser.frequency8Training(OZDraws);
-//        analyser.frequencyWithSupplyTraining(OZDraws);
-        analyser.analyse(OZDraws);
-        analyser.frequency9Training(OZDraws);
+//        FrequencyTrainerOZ analyser = new FrequencyTrainerOZ();
+//        analyser.randomTraining(OZDraws);
+////        analyser.train(OZDraws);
+////        analyser.frequency8Training(OZDraws);
+////        analyser.frequencyWithSupplyTraining(OZDraws);
+//        analyser.analyse(OZDraws);
+//        analyser.frequency9Training(OZDraws);
 
 //        FrequencyPositionAnalyserOZ frequencyPositionAnalyser = new FrequencyPositionAnalyserOZ();
 //        frequencyPositionAnalyser.analyse(OZDraws);

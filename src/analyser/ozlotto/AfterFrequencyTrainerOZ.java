@@ -19,7 +19,6 @@ public class AfterFrequencyTrainerOZ extends OZAbstractTrainer
 {
     private Map<Integer, Map<Integer, Integer>> afterFrequencyMap;
 
-    @Override
     public void analyse(List<OZDraw> OZDraws)
     {
 
@@ -74,7 +73,6 @@ public class AfterFrequencyTrainerOZ extends OZAbstractTrainer
         return afterFrequencyMap;
     }
 
-    @Override
     public void train(List<OZDraw> OZDraws)
     {
         FrequencyTrainerOZ frequencyAnalyser = new FrequencyTrainerOZ();

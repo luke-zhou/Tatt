@@ -5,6 +5,7 @@ import comparator.ValueComparator;
 import domain.Frequency;
 import domain.OZDraw;
 import domain.PowerBallDraw;
+import util.CsvUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +26,7 @@ public class OZAnalyser extends AbstractAnalyser
 
     public void analyse()
     {
+        ozDraws = CsvUtil.loadOZData(dataFileName);
         frequency = new Frequency(OZDraw.MAX_NUM);
 
         for (OZDraw ozDraw : ozDraws)
@@ -42,4 +44,8 @@ public class OZAnalyser extends AbstractAnalyser
         System.out.println(frequency.getSortedFrequency());
     }
 
+    public List<OZDraw> getOzDraws()
+    {
+        return ozDraws;
+    }
 }
