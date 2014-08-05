@@ -19,6 +19,81 @@ public class PowerBallDraw extends Draw
     private Integer num6;
     private Integer powerBall;
 
+    public int checkWinPowerHit(Integer[] selections)
+    {
+        Integer[] thisDraw = new Integer[NUM_OF_BALL];
+
+        thisDraw[0] = num1;
+        thisDraw[1] = num2;
+        thisDraw[2] = num3;
+        thisDraw[3] = num4;
+        thisDraw[4] = num5;
+        thisDraw[5] = num6;
+
+        Integer[] testedDraw = selections;
+
+        Arrays.sort(thisDraw);
+        Arrays.sort(testedDraw);
+
+        int count = 0;
+
+        for (int j = 0, i = 0; i < NUM_OF_BALL && j < NUM_OF_BALL; )
+        {
+            if (thisDraw[i] < testedDraw[j])
+            {
+                i++;
+            }
+            else if (thisDraw[i] == testedDraw[j])
+            {
+                count++;
+                i++;
+                j++;
+            }
+            else if (thisDraw[i] > testedDraw[j])
+            {
+                j++;
+            }
+        }
+
+
+        boolean powerBallCheck = true;
+
+
+        if (count == 2 && powerBallCheck)
+        {
+            return 1;//division 8
+        }
+        else if (count == 4)
+        {
+            return 2;//division 7
+        }
+        else if (count == 3 && powerBallCheck)
+        {
+            return 3; //division 6
+        }
+        else if (count == 4 && powerBallCheck)
+        {
+            return 5; //division 5
+        }
+        else if (count == 5 && !powerBallCheck)
+        {
+            return 10; //division 4
+        }
+        else if (count == 5 && powerBallCheck)
+        {
+            return 500; //division 3
+        }
+        else if (count == 6 && !powerBallCheck)
+        {
+            return 3500; //division 2
+        }
+        else if (count == 6 && powerBallCheck)
+        {
+            return 500000; //division 1
+        }
+        return 0;
+    }
+
     public int checkWin(PowerBallDraw draw)
     {
         Integer[] thisDraw = new Integer[NUM_OF_BALL];
@@ -61,43 +136,44 @@ public class PowerBallDraw extends Draw
             }
         }
 
+        int division=0;
 
         boolean powerBallCheck = powerBall == draw.powerBall;
 
 
         if (count == 2 && powerBallCheck)
         {
-            return 1;//division 8
+            division= 1;//division 8
         }
         else if (count == 4)
         {
-            return 2;//division 7
+            division= 2;//division 7
         }
         else if (count == 3 && powerBallCheck)
         {
-            return 3; //division 6
+            division= 3; //division 6
         }
         else if (count == 4 && powerBallCheck)
         {
-            return 5; //division 5
+            division= 5; //division 5
         }
         else if (count == 5 && !powerBallCheck)
         {
-            return 10; //division 4
+            division= 10; //division 4
         }
         else if (count == 5 && powerBallCheck)
         {
-            return 500; //division 3
+            division= 500; //division 3
         }
         else if (count == 6 && !powerBallCheck)
         {
-            return 3500; //division 2
+            division= 3500; //division 2
         }
         else if (count == 6 && powerBallCheck)
         {
-            return 500000; //division 1
+            division= 500000; //division 1
         }
-        return 0;
+        return division/MAX_POWER_BALL_NUM;
 
     }
 

@@ -1,6 +1,7 @@
 package analyser.powerball;
 
 import analyser.AbstractTrainer;
+import domain.Draw;
 import domain.PowerBallDraw;
 
 import java.util.List;
@@ -8,16 +9,16 @@ import java.util.List;
 /**
  * Created by Luke on 13/05/2014.
  */
-public abstract class PowerBallRandomTrainer extends AbstractTrainer
+public class PowerBallRandomTrainer extends AbstractTrainer
 {
     protected static int TRAIN_SIZE = 400;
     protected static int FIRST_DRAW = 877;
 
-    public void baseLine(List<PowerBallDraw> PowerBallDraws)
+    public void train(List<PowerBallDraw> powerBallDraws)
     {
         System.out.println("Power Ball Random(Baseline):");
 
-        for (PowerBallDraw draw : PowerBallDraws)
+        for (PowerBallDraw draw : powerBallDraws)
         {
             int[] selection = new int[PowerBallDraw.NUM_OF_BALL];
 

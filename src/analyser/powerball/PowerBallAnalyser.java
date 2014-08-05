@@ -1,14 +1,11 @@
 package analyser.powerball;
 
 import analyser.AbstractAnalyser;
-import comparator.ValueComparator;
+import domain.Frequency;
 import domain.PowerBallDraw;
 import util.CsvUtil;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Created by Luke on 13/05/2014.
@@ -25,32 +22,21 @@ public class PowerBallAnalyser extends AbstractAnalyser
     public void analyse()
     {
         powerBallDraws = CsvUtil.loadPowerData(dataFileName);
-        frequency = new HashMap<Integer, Integer>();
-        ValueComparator bvc = new ValueComparator(frequency);
-        TreeMap<Integer, Integer> sortedFrequency = new TreeMap<Integer, Integer>(bvc);
-
-        initMap();
+        frequency = new Frequency(PowerBallDraw.MAX_NUM);
 
         for (PowerBallDraw draw : powerBallDraws)
         {
-            updateFrequency(frequency, draw.getNum1());
-            updateFrequency(frequency, draw.getNum2());
-            updateFrequency(frequency, draw.getNum3());
-            updateFrequency(frequency, draw.getNum4());
-            updateFrequency(frequency, draw.getNum5());
-            updateFrequency(frequency, draw.getNum6());
+            frequency.updateFrequency(draw.getNum1());
+            frequency.updateFrequency(draw.getNum2());
+            frequency.updateFrequency(draw.getNum3());
+            frequency.updateFrequency(draw.getNum4());
+            frequency.updateFrequency(draw.getNum5());
+            frequency.updateFrequency(draw.getNum6());
         }
 
         //System.out.println(frequency);
-        sortedFrequency.putAll(frequency);
-        System.out.println(sortedFrequency);
+        System.out.println(frequency.getSortedFrequency());
 
-    }
-
-    @Override
-    protected int getMaxDrawNum()
-    {
-        return PowerBallDraw.MAX_NUM;
     }
 
     public List<PowerBallDraw> getPowerBallDraws()

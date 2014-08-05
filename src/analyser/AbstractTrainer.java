@@ -1,5 +1,10 @@
 package analyser;
 
+import domain.Draw;
+import domain.Frequency;
+
+import java.util.List;
+
 /**
  * Created by Luke on 13/05/2014.
  */
@@ -8,6 +13,9 @@ public abstract class AbstractTrainer
     public int win = 0;
     public int winNum = 0;
     public int total = 0;
+
+    protected Frequency frequency;
+
 
     public void accumulateWinPrice(int division)
     {
@@ -26,4 +34,5 @@ public abstract class AbstractTrainer
         System.out.println("total:" + total);
         System.out.println("total(%):" + 1.0 * win / total);
     }
+
 }

@@ -22,7 +22,7 @@ public abstract class OZAbstractTrainer extends AbstractTrainer
 
     public void randomTraining(List<OZDraw> OZDraws)
     {
-        System.out.println("Random:");
+        System.out.println("Random OZ:");
         int win = 0;
         int winNum = 0;
         int total = 0;
