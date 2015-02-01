@@ -21,7 +21,7 @@ public class Main
     private static String POWER_BALL_FILE = "data/powerball.csv";
     public static void main(String[] args)
     {
-        analyseOZ();
+//        analyseOZ();
         analysePowerBall();
     }
 
