@@ -59,39 +59,42 @@ public class PowerBallDraw extends Draw
         boolean powerBallCheck = true;
 
 
+        int division=0;
+
+
         if (count == 2 && powerBallCheck)
         {
-            return 1;//division 8
+            division= 1;//division 8
         }
         else if (count == 4)
         {
-            return 2;//division 7
+            division= 2;//division 7
         }
         else if (count == 3 && powerBallCheck)
         {
-            return 3; //division 6
+            division= 3; //division 6
         }
         else if (count == 4 && powerBallCheck)
         {
-            return 5; //division 5
+            division= 5; //division 5
         }
         else if (count == 5 && !powerBallCheck)
         {
-            return 10; //division 4
+            division= 10; //division 4
         }
         else if (count == 5 && powerBallCheck)
         {
-            return 500; //division 3
+            division= 500; //division 3
         }
         else if (count == 6 && !powerBallCheck)
         {
-            return 3500; //division 2
+            division= 3500; //division 2
         }
         else if (count == 6 && powerBallCheck)
         {
-            return 500000; //division 1
+            division= 500000; //division 1
         }
-        return 0;
+        return division;
     }
 
     public int checkWin(PowerBallDraw draw)
@@ -173,7 +176,7 @@ public class PowerBallDraw extends Draw
         {
             division= 500000; //division 1
         }
-        return division/MAX_POWER_BALL_NUM;
+        return division;
 
     }
 

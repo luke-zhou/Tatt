@@ -58,21 +58,5 @@ public class Main
         baseLine.train(analyser.getPowerBallDraws());
         PowerBallFrequencyTrainer frequencyTrainer = new PowerBallFrequencyTrainer();
         frequencyTrainer.trainPowerHit(analyser.getPowerBallDraws());
-        //analyser.randomTraining(draws);
-//        analyser.train(OZDraws);
-//        analyser.frequency8Training(OZDraws);
-//        analyser.frequencyWithSupplyTraining(OZDraws);
-        //analyser.frequency9Training(OZDraws);
-
-//        FrequencyPositionAnalyserOZ frequencyPositionAnalyser = new FrequencyPositionAnalyserOZ();
-//        frequencyPositionAnalyser.analyse(OZDraws);
-////
-////        FrequencyPositionAnalyserOZ analyser1 = new FrequencyPositionAnalyserOZ();
-////        analyser1.frequencyPositionTraining(OZDraws);
-//
-//
-//        AfterFrequencyAnalyserOZ afterFrequencyAnalyser = new AfterFrequencyAnalyserOZ();
-//        //afterFrequencyAnalyser.analyse(OZDraws);
-//        afterFrequencyAnalyser.train(OZDraws);
     }
 }
