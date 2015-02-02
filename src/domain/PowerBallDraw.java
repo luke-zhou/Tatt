@@ -19,7 +19,7 @@ public class PowerBallDraw extends Draw
     private Integer num6;
     private Integer powerBall;
 
-    public int checkWinPowerHit(Integer[] selections)
+    public double checkWinPowerHit(Integer[] selections)
     {
         Integer[] thisDraw = new Integer[NUM_OF_BALL];
 
@@ -94,7 +94,7 @@ public class PowerBallDraw extends Draw
         {
             division= 500000; //division 1
         }
-        return division;
+        return division/18.0;
     }
 
     public int checkWin(PowerBallDraw draw)
@@ -192,6 +192,27 @@ public class PowerBallDraw extends Draw
                 ", num6=" + num6 +
                 ", powerBall=" + powerBall +
                 '}';
+    }
+
+    public Integer getNum(int index)
+    {
+        switch (index)
+        {
+            case 1:
+                return num1;
+            case 2:
+                return num2;
+            case 3:
+                return num3;
+            case 4:
+                return num4;
+            case 5:
+                return num5;
+            case 6:
+                return num6;
+            default:
+                return null;
+        }
     }
 
     public Integer getNum1()

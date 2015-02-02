@@ -1,23 +1,20 @@
 package analyser;
 
-import domain.Draw;
 import domain.Frequency;
-
-import java.util.List;
 
 /**
  * Created by Luke on 13/05/2014.
  */
 public abstract class AbstractTrainer
 {
-    public int win = 0;
+    public double win = 0;
     public int winNum = 0;
     public int total = 0;
 
     protected Frequency frequency;
 
 
-    public void accumulateWinPrice(int division)
+    public void accumulateWinPrice(double division)
     {
         if (division > 0)
         {
@@ -25,6 +22,13 @@ public abstract class AbstractTrainer
             winNum++;
         }
         total++;
+    }
+
+    protected void reset()
+    {
+        win = 0;
+        winNum = 0;
+        total = 0;
     }
 
     public void printOutResult()

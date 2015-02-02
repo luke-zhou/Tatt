@@ -1,13 +1,19 @@
+import analyser.powerball.PowerBallPiTrainer;
 import util.MathUtil;
+import util.exception.NotFoundException;
 
 /**
  * Created by Luke on 19/09/2014.
  */
 public class Test
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws NotFoundException
     {
-        System.out.println(MathUtil.getPIFraction());
+        PowerBallPiTrainer trainer = new PowerBallPiTrainer();
+        int number = trainer.retrieveNumberFromPi(16);
+        System.out.println(number);
+        System.out.println(MathUtil.getPrime(16));
+        System.out.println(MathUtil.PI_FRACTION.substring(16-1));
 
 
     }

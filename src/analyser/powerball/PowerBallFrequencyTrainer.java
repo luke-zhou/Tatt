@@ -20,7 +20,9 @@ public class PowerBallFrequencyTrainer extends PowerBallAbstractTrainer
 
     public void trainPowerHit(List<PowerBallDraw> powerBallDraws)
     {
-        System.out.println("PowerBall Power Hit:");
+        reset();
+
+        System.out.println("PowerBall Power Hit Frequency:");
         frequency = new Frequency(PowerBallDraw.MAX_NUM);
 
         for (PowerBallDraw draw : powerBallDraws)
@@ -39,7 +41,7 @@ public class PowerBallFrequencyTrainer extends PowerBallAbstractTrainer
                         break;
                     }
                 }
-                int division = draw.checkWinPowerHit(selection);
+                double division = draw.checkWinPowerHit(selection);
                 accumulateWinPrice(division);
             }
 

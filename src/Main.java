@@ -2,6 +2,7 @@ import analyser.ozlotto.FrequencyTrainerOZ;
 import analyser.ozlotto.OZAnalyser;
 import analyser.powerball.PowerBallAnalyser;
 import analyser.powerball.PowerBallFrequencyTrainer;
+import analyser.powerball.PowerBallPiTrainer;
 import analyser.powerball.PowerBallRandomTrainer;
 import domain.OZDraw;
 import util.CsvUtil;
@@ -56,7 +57,14 @@ public class Main
         PowerBallAnalyser analyser = new PowerBallAnalyser(POWER_BALL_FILE);
         PowerBallRandomTrainer baseLine = new PowerBallRandomTrainer();
         baseLine.train(analyser.getPowerBallDraws());
+        baseLine.trainPowerHit(analyser.getPowerBallDraws());
         PowerBallFrequencyTrainer frequencyTrainer = new PowerBallFrequencyTrainer();
         frequencyTrainer.trainPowerHit(analyser.getPowerBallDraws());
+        PowerBallPiTrainer piTrainer = new PowerBallPiTrainer();
+        piTrainer.trainPowerHit(analyser.getPowerBallDraws());
+        piTrainer.train(analyser.getPowerBallDraws());
+        piTrainer.trainPowerHitWithPrime(analyser.getPowerBallDraws());
+        piTrainer.trainPowerHitWithPrimeAcc(analyser.getPowerBallDraws());
+        piTrainer.trainPowerHitPrime(analyser.getPowerBallDraws());
     }
 }
