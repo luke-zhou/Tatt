@@ -184,36 +184,46 @@ public class PowerBallPiTrainer extends PowerBallAbstractTrainer
 
     public void trainPowerHitPrime(List<PowerBallDraw> powerBallDraws)
     {
-        reset();
+        System.out.println("Power Ball Hit Prime:");
 
-        System.out.println("Power Ball HitPrime:");
-
-        for (PowerBallDraw draw : powerBallDraws)
-        {
-            Integer[] selection = new Integer[PowerBallDraw.NUM_OF_BALL];
-
-            int tempSelection;
-            for (int i = 0; i < PowerBallDraw.NUM_OF_BALL; i++)
+            for (int y = -10000; y <= 10000; y++)
             {
-                try
+                for (int x = 1; x <= 10000; x++)
                 {
-                    int prime = MathUtil.getPrime(draw.getNum(i+1));
-                    tempSelection = prime%PowerBallDraw.MAX_NUM;
-                    selection[i] = tempSelection;
-                }
-                catch (NotFoundException e)
-                {
-                    selection[i] = 0;
-                }
 
+                    reset();
+
+                    for (PowerBallDraw draw : powerBallDraws)
+                    {
+                        Integer[] selection = new Integer[PowerBallDraw.NUM_OF_BALL];
+
+                        int tempSelection;
+                        for (int i = 0; i < PowerBallDraw.NUM_OF_BALL; i++)
+                        {
+                            try
+                            {
+                                int prime = MathUtil.getPrime(draw.getNum(i + 1));
+                                tempSelection =Math.abs ((prime * x + y) % PowerBallDraw.MAX_NUM);
+                                selection[i] = tempSelection;
+                            } catch (NotFoundException e)
+                            {
+                                selection[i] = 0;
+                            }
+
+                        }
+
+                        double division = draw.checkWinPowerHit(selection);
+
+                        accumulateWinPrice(division);
+                    }
+
+                    if ((1.0 * win / total) > 0.05 && winNum>20)
+                    {
+                        System.out.println("Power Ball Hit Prime:" + x + "|" + y);
+                        printOutResult();
+                    }
+                }
             }
-
-            double division = draw.checkWinPowerHit(selection);
-
-            accumulateWinPrice(division);
-        }
-
-        printOutResult();
 
     }
 }

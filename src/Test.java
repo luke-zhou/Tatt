@@ -15,6 +15,8 @@ public class Test
         System.out.println(MathUtil.getPrime(16));
         System.out.println(MathUtil.PI_FRACTION.substring(16-1));
 
+        System.out.println(-10%7);
+
 
     }
 
