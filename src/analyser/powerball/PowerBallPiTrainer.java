@@ -188,21 +188,29 @@ public class PowerBallPiTrainer extends PowerBallAbstractTrainer
 
             for (int y = -10000; y <= 10000; y++)
             {
+                if(y%100==0) System.out.print(y+".");
                 for (int x = 1; x <= 10000; x++)
                 {
 
                     reset();
-
+                    PowerBallDraw previous=null;
                     for (PowerBallDraw draw : powerBallDraws)
                     {
+                        if (previous==null)
+                        {
+                            previous = draw;
+                            continue;
+                        }
+
                         Integer[] selection = new Integer[PowerBallDraw.NUM_OF_BALL];
 
                         int tempSelection;
                         for (int i = 0; i < PowerBallDraw.NUM_OF_BALL; i++)
                         {
+
                             try
                             {
-                                int prime = MathUtil.getPrime(draw.getNum(i + 1));
+                                int prime = MathUtil.getPrime(previous.getNum(i + 1));
                                 tempSelection =Math.abs ((prime * x + y) % PowerBallDraw.MAX_NUM);
                                 selection[i] = tempSelection;
                             } catch (NotFoundException e)
@@ -215,10 +223,13 @@ public class PowerBallPiTrainer extends PowerBallAbstractTrainer
                         double division = draw.checkWinPowerHit(selection);
 
                         accumulateWinPrice(division);
+
+                        previous = draw;
                     }
 
-                    if ((1.0 * win / total) > 0.05 && winNum>20)
+                    if ((1.0 * win / total) > 0.04 && winNum>40)
                     {
+                        System.out.println();
                         System.out.println("Power Ball Hit Prime:" + x + "|" + y);
                         printOutResult();
                     }

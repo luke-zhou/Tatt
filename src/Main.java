@@ -1,9 +1,6 @@
 import analyser.ozlotto.FrequencyTrainerOZ;
 import analyser.ozlotto.OZAnalyser;
-import analyser.powerball.PowerBallAnalyser;
-import analyser.powerball.PowerBallFrequencyTrainer;
-import analyser.powerball.PowerBallPiTrainer;
-import analyser.powerball.PowerBallRandomTrainer;
+import analyser.powerball.*;
 import domain.OZDraw;
 import util.CsvUtil;
 
@@ -19,7 +16,7 @@ import java.util.List;
 public class Main
 {
     private static String OZ_LOTTO_FILE = "data/OzLotto.csv";
-    private static String POWER_BALL_FILE = "data/powerball.csv";
+    private static String POWER_BALL_FILE = "data/powerball_976.csv";
     public static void main(String[] args)
     {
 //        analyseOZ();
@@ -65,6 +62,7 @@ public class Main
         piTrainer.train(analyser.getPowerBallDraws());
         piTrainer.trainPowerHitWithPrime(analyser.getPowerBallDraws());
         piTrainer.trainPowerHitWithPrimeAcc(analyser.getPowerBallDraws());
-        piTrainer.trainPowerHitPrime(analyser.getPowerBallDraws());
+        PowerBallPrimeTrainer primeTrainer = new PowerBallPrimeTrainer();
+        primeTrainer.train(analyser.getPowerBallDraws());
     }
 }

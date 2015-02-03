@@ -2,6 +2,8 @@ import analyser.powerball.PowerBallPiTrainer;
 import util.MathUtil;
 import util.exception.NotFoundException;
 
+import java.util.Date;
+
 /**
  * Created by Luke on 19/09/2014.
  */
@@ -15,7 +17,9 @@ public class Test
         System.out.println(MathUtil.getPrime(16));
         System.out.println(MathUtil.PI_FRACTION.substring(16-1));
 
-        System.out.println(-10%7);
+        System.out.println(-46%45);
+
+        System.out.println((new Date()).toInstant());
 
 
     }
