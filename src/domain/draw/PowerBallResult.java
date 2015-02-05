@@ -26,4 +26,13 @@ public class PowerBallResult
     {
         return differ;
     }
+
+    @Override
+    public String toString()
+    {
+        return "PowerBallResult{" +
+                "division=" + division +
+                ", differ=" + differ +
+                '}';
+    }
 }

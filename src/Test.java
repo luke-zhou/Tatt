@@ -13,6 +13,12 @@ public class Test
 {
     public static void main(String[] args) throws NotFoundException
     {
+
+
+    }
+
+    void temp1()
+    {
         PowerBallDraw draw = new PowerBallDraw();
         draw.setNum1(1);
         draw.setNum2(2);
@@ -25,7 +31,6 @@ public class Test
 
         System.out.println(result.getDivision());
         System.out.println(result.getDiffer());
-
 
     }
 

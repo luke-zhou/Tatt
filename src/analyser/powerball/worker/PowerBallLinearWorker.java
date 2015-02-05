@@ -34,9 +34,9 @@ public class PowerBallLinearWorker extends PowerBallAbstractWorker implements Ru
     {
         if (offset % 1000 == 0) System.out.println("Power Ball Hit Linear: (offset:" + offset + ")");
 
-        for (int x = 1; x <= times; x++)
+        for (int x = 2049; x <= 2049; x++)
         {
-            for (int z = 1; z < PowerBallDraw.MAX_NUM; z++)
+            for (int z = 13; z < 14; z++)
             {
                 reset();
                 PowerBallDraw previous = null;
@@ -58,6 +58,15 @@ public class PowerBallLinearWorker extends PowerBallAbstractWorker implements Ru
                     }
 
                     PowerBallResult result = draw.checkWinPowerHit(selection);
+
+                    System.out.println(draw.toStringOrdered());
+                    for (int i = 0; i < 6; i++)
+                    {
+                        System.out.print(selection[i]+":");
+                    }
+                    System.out.println();
+                    System.out.println(result);
+                    System.out.println();
 
                     accumulateWinPrice(result);
 

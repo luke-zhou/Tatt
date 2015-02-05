@@ -183,6 +183,27 @@ public class PowerBallDraw extends Draw
 
     }
 
+    public String toStringOrdered()
+    {
+        Integer[] num = new Integer[6];
+        num[0] = num1;
+        num[1] = num2;
+        num[2] = num3;
+        num[3] = num4;
+        num[4] = num5;
+        num[5] = num6;
+
+        Arrays.sort(num);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 6; i++)
+        {
+            sb.append(num[i]+":");
+        }
+        return sb.toString();
+
+    }
+
     @Override
     public String toString()
     {

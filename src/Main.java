@@ -1,6 +1,10 @@
 import analyser.ozlotto.FrequencyTrainerOZ;
 import analyser.ozlotto.OZAnalyser;
 import analyser.powerball.*;
+import analyser.powerball.worker.PowerBallLinearWorker;
+import domain.draw.PowerBallDraw;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -61,7 +65,8 @@ public class Main
 //        PowerBallPrimeTrainer primeTrainer = new PowerBallPrimeTrainer();
 //        primeTrainer.train(analyser.getPowerBallDraws());
         PowerBallLinearTrainer trainer = new PowerBallLinearTrainer(analyser.getPowerBallDraws());
-        trainer.train();
+        PowerBallLinearWorker worker = new PowerBallLinearWorker(-9997, 1, analyser.getPowerBallDraws());
+        worker.run();
 
     }
 }
