@@ -1,7 +1,7 @@
 package analyser.powerball;
 
 import analyser.AbstractTrainer;
-import analyser.powerball.worker.PowerBallPrimeWorker;
+import analyser.powerball.worker.PowerBallLinearWorker;
 import domain.draw.PowerBallDraw;
 
 import java.util.List;
@@ -9,17 +9,17 @@ import java.util.List;
 /**
  * Created with IntelliJ IDEA.
  * User: lzhou
- * Date: 3/02/2015
- * Time: 12:29 PM
+ * Date: 5/02/2015
+ * Time: 8:27 AM
  */
-public class PowerBallPrimeTrainer extends AbstractTrainer
+public class PowerBallLinearTrainer extends AbstractTrainer
 {
     private static final int OFFSET_RANGE = 10000;
     private static final int TIMES_RANGE = 10000;
 
     private List<PowerBallDraw> draws;
 
-    public PowerBallPrimeTrainer(List<PowerBallDraw> draws)
+    public PowerBallLinearTrainer(List<PowerBallDraw> draws)
     {
         super();
         this.draws = draws;
@@ -30,7 +30,7 @@ public class PowerBallPrimeTrainer extends AbstractTrainer
     {
         for (int i = -OFFSET_RANGE; i <= OFFSET_RANGE; i++)
         {
-            Runnable worker = new PowerBallPrimeWorker(i, TIMES_RANGE, (List<PowerBallDraw>) draws);
+            Runnable worker = new PowerBallLinearWorker(i, TIMES_RANGE, (List<PowerBallDraw>) draws);
             executor.execute(worker);
         }
     }

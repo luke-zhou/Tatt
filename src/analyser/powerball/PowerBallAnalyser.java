@@ -2,7 +2,7 @@ package analyser.powerball;
 
 import analyser.AbstractAnalyser;
 import domain.Frequency;
-import domain.PowerBallDraw;
+import domain.draw.PowerBallDraw;
 import util.CsvUtil;
 
 import java.util.List;

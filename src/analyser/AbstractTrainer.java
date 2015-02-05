@@ -1,42 +1,38 @@
 package analyser;
 
-import domain.Frequency;
+import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
- * Created by Luke on 13/05/2014.
+ * Created with IntelliJ IDEA.
+ * User: lzhou
+ * Date: 5/02/2015
+ * Time: 9:00 AM
  */
-public abstract class AbstractTrainer
+public abstract class AbstractTrainer implements Trainer
 {
-    public double win = 0;
-    public int winNum = 0;
-    public int total = 0;
+    private final int THREAD_NUM=5;
 
-    protected Frequency frequency;
+    protected final ExecutorService executor;
 
-
-    public void accumulateWinPrice(double division)
+    protected AbstractTrainer()
     {
-        if (division > 0)
+        executor = Executors.newFixedThreadPool(THREAD_NUM);
+    }
+
+    public void train()
+    {
+        System.out.println("start at: " + (new Date()).toInstant());
+        multiThreadJob();
+        executor.shutdown();
+        while (!executor.isTerminated())
         {
-            win += division;
-            winNum++;
         }
-        total++;
+        System.out.println("Finished all work");
+        System.out.println("finish at: " + (new Date()).toInstant());
     }
 
-    protected void reset()
-    {
-        win = 0;
-        winNum = 0;
-        total = 0;
-    }
-
-    public void printOutResult()
-    {
-        System.out.println("win:" + win);
-        System.out.println("winNum:" + winNum);
-        System.out.println("total:" + total);
-        System.out.println("total(%):" + 1.0 * win / total);
-    }
+    protected abstract void multiThreadJob();
 
 }

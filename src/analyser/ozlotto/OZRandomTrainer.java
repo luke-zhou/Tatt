@@ -1,6 +1,6 @@
 package analyser.ozlotto;
 
-import domain.OZDraw;
+import domain.draw.OZDraw;
 
 import java.util.List;
 

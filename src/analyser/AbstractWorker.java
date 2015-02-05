@@ -8,30 +8,19 @@ import domain.Frequency;
  * Date: 3/02/2015
  * Time: 2:12 PM
  */
-public class AbstractWorker
+public class AbstractWorker implements Worker
 {
-    public double win = 0;
-    public int winNum = 0;
-    public int total = 0;
-
-    protected Frequency frequency;
-
-
-    public void accumulateWinPrice(double division)
-    {
-        if (division > 0)
-        {
-            win += division;
-            winNum++;
-        }
-        total++;
-    }
+    protected double win = 0;
+    protected int winNum = 0;
+    protected int total = 0;
+    protected double differ = 0;
 
     protected void reset()
     {
         win = 0;
         winNum = 0;
         total = 0;
+        differ=0;
     }
 
     public void printOutResult()
@@ -39,6 +28,7 @@ public class AbstractWorker
         System.out.println("win:" + win);
         System.out.println("winNum:" + winNum);
         System.out.println("total:" + total);
-        System.out.println("total(%):" + 1.0 * win / total);
+        System.out.println("avg win(%):" + 1.0 * win / total);
+        System.out.println("avg differ(%):" + 1.0 * differ / total);
     }
 }

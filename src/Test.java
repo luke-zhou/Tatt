@@ -1,4 +1,6 @@
 import analyser.powerball.PowerBallPiTrainer;
+import domain.draw.PowerBallDraw;
+import domain.draw.PowerBallResult;
 import util.MathUtil;
 import util.exception.NotFoundException;
 
@@ -11,6 +13,24 @@ public class Test
 {
     public static void main(String[] args) throws NotFoundException
     {
+        PowerBallDraw draw = new PowerBallDraw();
+        draw.setNum1(1);
+        draw.setNum2(2);
+        draw.setNum3(3);
+        draw.setNum4(4);
+        draw.setNum5(5);
+        draw.setNum6(6);
+        Integer[] selection = {7, 8, 9, 10, 11, 12};
+        PowerBallResult result = draw.checkWinPowerHit(selection);
+
+        System.out.println(result.getDivision());
+        System.out.println(result.getDiffer());
+
+
+    }
+
+    void temp() throws NotFoundException
+    {
         PowerBallPiTrainer trainer = new PowerBallPiTrainer();
         int number = trainer.retrieveNumberFromPi(16);
         System.out.println(number);
@@ -20,8 +40,6 @@ public class Test
         System.out.println(-46%45);
 
         System.out.println((new Date()).toInstant());
-
-
     }
 
     int IndexOfLastOccurence(String A, String B){

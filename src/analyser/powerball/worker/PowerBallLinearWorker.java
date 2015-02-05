@@ -2,31 +2,29 @@ package analyser.powerball.worker;
 
 import domain.draw.PowerBallDraw;
 import domain.draw.PowerBallResult;
-import util.MathUtil;
-import util.exception.NotFoundException;
 
 import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
  * User: lzhou
- * Date: 3/02/2015
- * Time: 12:29 PM
+ * Date: 5/02/2015
+ * Time: 8:22 AM
  */
-public class PowerBallPrimeWorker extends PowerBallAbstractWorker implements Runnable
+public class PowerBallLinearWorker extends PowerBallAbstractWorker implements Runnable
 {
     private int offset;
     private int times;
     private List<PowerBallDraw> draws;
 
-    public PowerBallPrimeWorker(int offset, int times, List<PowerBallDraw> draws)
+    public PowerBallLinearWorker(int offset, int times, List<PowerBallDraw> draws)
     {
         this.offset = offset;
         this.times = times;
         this.draws = draws;
     }
 
-    public PowerBallPrimeWorker(int offset, List<PowerBallDraw> draws)
+    public PowerBallLinearWorker(int offset, List<PowerBallDraw> draws)
     {
         this.offset = offset;
         this.draws = draws;
@@ -34,7 +32,7 @@ public class PowerBallPrimeWorker extends PowerBallAbstractWorker implements Run
 
     public void run()
     {
-        if (offset%1000==0)System.out.println("Power Ball Hit Prime: (offset:" + offset + ")");
+        if (offset % 1000 == 0) System.out.println("Power Ball Hit Linear: (offset:" + offset + ")");
 
         for (int x = 1; x <= times; x++)
         {
@@ -55,18 +53,8 @@ public class PowerBallPrimeWorker extends PowerBallAbstractWorker implements Run
                     int tempSelection;
                     for (int i = 0; i < PowerBallDraw.NUM_OF_BALL; i++)
                     {
-
-                        try
-                        {
-                            int prime = MathUtil.getPrime(previous.getNum(i + 1));
-                            tempSelection = (Math.abs((prime * x + offset) % PowerBallDraw.MAX_NUM)+z) % PowerBallDraw.MAX_NUM;
-                            selection[i] = tempSelection;
-                        }
-                        catch (NotFoundException e)
-                        {
-                            selection[i] = 0;
-                        }
-
+                        tempSelection = (Math.abs((previous.getNum(i + 1) * x + offset) % PowerBallDraw.MAX_NUM) + z) % PowerBallDraw.MAX_NUM;
+                        selection[i] = tempSelection;
                     }
 
                     PowerBallResult result = draw.checkWinPowerHit(selection);
@@ -77,10 +65,10 @@ public class PowerBallPrimeWorker extends PowerBallAbstractWorker implements Run
                 }
 
 //                if ((1.0 * win / total) > 1 || winNum > 35)
-                if (winNum > 36)
+                if (winNum > 38)
                 {
                     System.out.println();
-                    System.out.println("Power Ball Hit Prime:" + x + "|" + offset +"|"+z);
+                    System.out.println("Power Ball Hit Linear:" + x + "|" + offset + "|" + z);
                     printOutResult();
                 }
             }

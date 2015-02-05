@@ -1,8 +1,8 @@
 package util;
 
 import au.com.bytecode.opencsv.CSVReader;
-import domain.OZDraw;
-import domain.PowerBallDraw;
+import domain.draw.OZDraw;
+import domain.draw.PowerBallDraw;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

@@ -1,16 +1,11 @@
 package analyser.powerball;
 
-import analyser.AbstractAnalyser;
-import analyser.AbstractTrainer;
-import comparator.ValueComparator;
 import domain.Frequency;
-import domain.OZDraw;
-import domain.PowerBallDraw;
+import domain.draw.PowerBallDraw;
+import domain.draw.PowerBallResult;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Created by Luke on 4/08/2014.
@@ -41,8 +36,9 @@ public class PowerBallFrequencyTrainer extends PowerBallAbstractTrainer
                         break;
                     }
                 }
-                double division = draw.checkWinPowerHit(selection);
-                accumulateWinPrice(division);
+                PowerBallResult result = draw.checkWinPowerHit(selection);
+
+                accumulateWinPrice(result.getDivision());
             }
 
             frequency.updateFrequency(draw.getNum1());

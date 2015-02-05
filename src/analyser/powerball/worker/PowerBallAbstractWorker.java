@@ -1,6 +1,7 @@
 package analyser.powerball.worker;
 
 import analyser.AbstractWorker;
+import domain.draw.PowerBallResult;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,4 +11,14 @@ import analyser.AbstractWorker;
  */
 public class PowerBallAbstractWorker extends AbstractWorker
 {
+    public void accumulateWinPrice(PowerBallResult result)
+    {
+        if (result.getDivision() > 0)
+        {
+            win += result.getDivision();
+            winNum++;
+        }
+        differ += result.getDiffer();
+        total++;
+    }
 }

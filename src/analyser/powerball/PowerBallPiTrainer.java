@@ -1,6 +1,7 @@
 package analyser.powerball;
 
-import domain.PowerBallDraw;
+import domain.draw.PowerBallDraw;
+import domain.draw.PowerBallResult;
 import util.MathUtil;
 import util.exception.NotFoundException;
 
@@ -30,9 +31,9 @@ public class PowerBallPiTrainer extends PowerBallAbstractTrainer
                 selection[i] = tempSelection;
             }
 
-            double division = draw.checkWinPowerHit(selection);
+            PowerBallResult result = draw.checkWinPowerHit(selection);
 
-            accumulateWinPrice(division);
+            accumulateWinPrice(result.getDivision());
         }
 
         printOutResult();
@@ -135,9 +136,9 @@ public class PowerBallPiTrainer extends PowerBallAbstractTrainer
 
             }
 
-            double division = draw.checkWinPowerHit(selection);
+            PowerBallResult result = draw.checkWinPowerHit(selection);
 
-            accumulateWinPrice(division);
+            accumulateWinPrice(result.getDivision());
         }
 
         printOutResult();
@@ -173,9 +174,9 @@ public class PowerBallPiTrainer extends PowerBallAbstractTrainer
 
             }
 
-            double division = draw.checkWinPowerHit(selection);
+            PowerBallResult result = draw.checkWinPowerHit(selection);
 
-            accumulateWinPrice(division);
+            accumulateWinPrice(result.getDivision());
         }
 
         printOutResult();
@@ -220,9 +221,9 @@ public class PowerBallPiTrainer extends PowerBallAbstractTrainer
 
                         }
 
-                        double division = draw.checkWinPowerHit(selection);
+                        PowerBallResult result = draw.checkWinPowerHit(selection);
 
-                        accumulateWinPrice(division);
+                        accumulateWinPrice(result.getDivision());
 
                         previous = draw;
                     }

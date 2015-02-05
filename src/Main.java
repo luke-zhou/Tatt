@@ -1,10 +1,6 @@
 import analyser.ozlotto.FrequencyTrainerOZ;
 import analyser.ozlotto.OZAnalyser;
 import analyser.powerball.*;
-import domain.OZDraw;
-import util.CsvUtil;
-
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -52,17 +48,20 @@ public class Main
     private static void analysePowerBall()
     {
         PowerBallAnalyser analyser = new PowerBallAnalyser(POWER_BALL_FILE);
-        PowerBallRandomTrainer baseLine = new PowerBallRandomTrainer();
-        baseLine.train(analyser.getPowerBallDraws());
-        baseLine.trainPowerHit(analyser.getPowerBallDraws());
-        PowerBallFrequencyTrainer frequencyTrainer = new PowerBallFrequencyTrainer();
-        frequencyTrainer.trainPowerHit(analyser.getPowerBallDraws());
-        PowerBallPiTrainer piTrainer = new PowerBallPiTrainer();
-        piTrainer.trainPowerHit(analyser.getPowerBallDraws());
-        piTrainer.train(analyser.getPowerBallDraws());
-        piTrainer.trainPowerHitWithPrime(analyser.getPowerBallDraws());
-        piTrainer.trainPowerHitWithPrimeAcc(analyser.getPowerBallDraws());
-        PowerBallPrimeTrainer primeTrainer = new PowerBallPrimeTrainer();
-        primeTrainer.train(analyser.getPowerBallDraws());
+//        PowerBallRandomTrainer baseLine = new PowerBallRandomTrainer();
+//        baseLine.train(analyser.getPowerBallDraws());
+//        baseLine.trainPowerHit(analyser.getPowerBallDraws());
+//        PowerBallFrequencyTrainer frequencyTrainer = new PowerBallFrequencyTrainer();
+//        frequencyTrainer.trainPowerHit(analyser.getPowerBallDraws());
+//        PowerBallPiTrainer piTrainer = new PowerBallPiTrainer();
+//        piTrainer.trainPowerHit(analyser.getPowerBallDraws());
+//        piTrainer.train(analyser.getPowerBallDraws());
+//        piTrainer.trainPowerHitWithPrime(analyser.getPowerBallDraws());
+//        piTrainer.trainPowerHitWithPrimeAcc(analyser.getPowerBallDraws());
+//        PowerBallPrimeTrainer primeTrainer = new PowerBallPrimeTrainer();
+//        primeTrainer.train(analyser.getPowerBallDraws());
+        PowerBallLinearTrainer trainer = new PowerBallLinearTrainer(analyser.getPowerBallDraws());
+        trainer.train();
+
     }
 }

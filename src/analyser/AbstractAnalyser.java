@@ -1,9 +1,6 @@
 package analyser;
 
 import domain.Frequency;
-import domain.PowerBallDraw;
-
-import java.util.Map;
 
 /**
  * Created by Luke on 4/08/2014.

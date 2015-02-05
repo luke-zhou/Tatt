@@ -1,9 +1,5 @@
 package analyser;
 
-import domain.Draw;
-
-import java.util.List;
-
 /**
  * Created with IntelliJ IDEA.
  * User: lzhou
@@ -12,5 +8,5 @@ import java.util.List;
  */
 public interface Trainer
 {
-    public void train(List<? extends Draw> draws);
+    public void train();
 }

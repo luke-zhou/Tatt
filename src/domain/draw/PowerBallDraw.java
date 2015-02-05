@@ -1,6 +1,11 @@
-package domain;
+package domain.draw;
 
+import domain.Vector;
+import domain.exception.VectorException;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Luke on 13/05/2014.
@@ -19,7 +24,7 @@ public class PowerBallDraw extends Draw
     private Integer num6;
     private Integer powerBall;
 
-    public double checkWinPowerHit(Integer[] selections)
+    public PowerBallResult checkWinPowerHit(Integer[] selections)
     {
         Integer[] thisDraw = new Integer[NUM_OF_BALL];
 
@@ -35,6 +40,20 @@ public class PowerBallDraw extends Draw
         Arrays.sort(thisDraw);
         Arrays.sort(testedDraw);
 
+        Double differ = getDiffer(thisDraw, testedDraw);
+
+        boolean powerBallCheck = true;
+
+        int division= getDivision(thisDraw, testedDraw, powerBallCheck);
+
+        PowerBallResult result = new PowerBallResult(division/20.0, differ);
+
+        return result;
+
+    }
+
+    private int getDivision(Integer[] thisDraw, Integer[] testedDraw, boolean powerBallCheck)
+    {
         int count = 0;
 
         for (int j = 0, i = 0; i < NUM_OF_BALL && j < NUM_OF_BALL; )
@@ -55,12 +74,7 @@ public class PowerBallDraw extends Draw
             }
         }
 
-
-        boolean powerBallCheck = true;
-
-
-        int division=0;
-
+        int division =0;
 
         if (count == 2 && powerBallCheck)
         {
@@ -94,7 +108,49 @@ public class PowerBallDraw extends Draw
         {
             division= 500000; //division 1
         }
-        return division/18.0;
+
+        return division;
+    }
+
+    private Double getDiffer(Integer[] thisDraw, Integer[] testedDraw)
+    {
+        List<Integer> thisList = new ArrayList<Integer>();
+        List<Integer> testedList = new ArrayList<Integer>();
+
+        for (int j = 0, i = 0; i < NUM_OF_BALL || j < NUM_OF_BALL; )
+        {
+            if (j == NUM_OF_BALL)
+            {
+                thisList.add(thisDraw[i]);
+                i++;
+            }
+            else if(i == NUM_OF_BALL)
+            {
+                testedList.add(testedDraw[j]);
+                j++;
+            }
+            else if (thisDraw[i] < testedDraw[j])
+            {
+                thisList.add(thisDraw[i]);
+                i++;
+            }
+            else if (thisDraw[i] == testedDraw[j])
+            {
+                i++;
+                j++;
+            }
+            else if (thisDraw[i] > testedDraw[j])
+            {
+                testedList.add(testedDraw[j]);
+                j++;
+            }
+        }
+        int differ = 0;
+        for (int i=0;i<thisList.size();i++)
+        {
+            differ += (testedList.get(i) - thisList.get(i))*(testedList.get(i) - thisList.get(i));
+        }
+        return Double.valueOf(differ);
     }
 
     public int checkWin(PowerBallDraw draw)
@@ -119,63 +175,10 @@ public class PowerBallDraw extends Draw
         Arrays.sort(thisDraw);
         Arrays.sort(testedDraw);
 
-        int count = 0;
-
-        for (int j = 0, i = 0; i < NUM_OF_BALL && j < NUM_OF_BALL; )
-        {
-            if (thisDraw[i] < testedDraw[j])
-            {
-                i++;
-            }
-            else if (thisDraw[i] == testedDraw[j])
-            {
-                count++;
-                i++;
-                j++;
-            }
-            else if (thisDraw[i] > testedDraw[j])
-            {
-                j++;
-            }
-        }
-
-        int division=0;
-
         boolean powerBallCheck = powerBall == draw.powerBall;
 
+        int division=getDivision(thisDraw,testedDraw,powerBallCheck);
 
-        if (count == 2 && powerBallCheck)
-        {
-            division= 1;//division 8
-        }
-        else if (count == 4)
-        {
-            division= 2;//division 7
-        }
-        else if (count == 3 && powerBallCheck)
-        {
-            division= 3; //division 6
-        }
-        else if (count == 4 && powerBallCheck)
-        {
-            division= 5; //division 5
-        }
-        else if (count == 5 && !powerBallCheck)
-        {
-            division= 10; //division 4
-        }
-        else if (count == 5 && powerBallCheck)
-        {
-            division= 500; //division 3
-        }
-        else if (count == 6 && !powerBallCheck)
-        {
-            division= 3500; //division 2
-        }
-        else if (count == 6 && powerBallCheck)
-        {
-            division= 500000; //division 1
-        }
         return division;
 
     }

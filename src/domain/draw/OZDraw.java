@@ -1,4 +1,6 @@
-package domain;
+package domain.draw;
+
+import domain.draw.Draw;
 
 import java.util.Arrays;
 

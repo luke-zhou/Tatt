@@ -1,16 +1,11 @@
 package analyser.ozlotto;
 
 import analyser.AbstractAnalyser;
-import comparator.ValueComparator;
 import domain.Frequency;
-import domain.OZDraw;
-import domain.PowerBallDraw;
+import domain.draw.OZDraw;
 import util.CsvUtil;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Created by Luke on 4/08/2014.

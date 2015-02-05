@@ -1,7 +1,7 @@
 package analyser.ozlotto;
 
 import comparator.ValueComparator;
-import domain.OZDraw;
+import domain.draw.OZDraw;
 
 import java.util.HashMap;
 import java.util.List;

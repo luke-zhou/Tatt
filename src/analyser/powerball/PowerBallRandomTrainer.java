@@ -1,8 +1,7 @@
 package analyser.powerball;
 
-import analyser.AbstractTrainer;
-import domain.Draw;
-import domain.PowerBallDraw;
+import domain.draw.PowerBallDraw;
+import domain.draw.PowerBallResult;
 
 import java.util.List;
 
@@ -49,9 +48,9 @@ public class PowerBallRandomTrainer extends PowerBallAbstractTrainer
         {
             Integer[] selection = pickNumber();
 
-            double division = draw.checkWinPowerHit(selection);
+            PowerBallResult result = draw.checkWinPowerHit(selection);
 
-            accumulateWinPrice(division);
+            accumulateWinPrice(result.getDivision());
         }
 
         printOutResult();

@@ -1,4 +1,4 @@
-package domain;
+package domain.draw;
 
 import java.util.Date;
 
