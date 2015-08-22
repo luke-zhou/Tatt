@@ -23,14 +23,14 @@ public abstract class AbstractTrainer implements Trainer
 
     public void train()
     {
-        System.out.println("start at: " + (new Date()).toInstant());
+        System.out.println("start at: " + (new Date()).toString());
         multiThreadJob();
         executor.shutdown();
         while (!executor.isTerminated())
         {
         }
         System.out.println("Finished all work");
-        System.out.println("finish at: " + (new Date()).toInstant());
+        System.out.println("finish at: " + (new Date()).toString());
     }
 
     protected abstract void multiThreadJob();

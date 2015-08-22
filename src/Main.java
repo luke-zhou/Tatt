@@ -16,7 +16,7 @@ import java.util.List;
 public class Main
 {
     private static String OZ_LOTTO_FILE = "data/OzLotto.csv";
-    private static String POWER_BALL_FILE = "data/powerball_976.csv";
+    private static String POWER_BALL_FILE = "data/powerball1005.csv";
     public static void main(String[] args)
     {
 //        analyseOZ();
@@ -52,6 +52,7 @@ public class Main
     private static void analysePowerBall()
     {
         PowerBallAnalyser analyser = new PowerBallAnalyser(POWER_BALL_FILE);
+        analyser.printOutMatrix();
 //        PowerBallRandomTrainer baseLine = new PowerBallRandomTrainer();
 //        baseLine.train(analyser.getPowerBallDraws());
 //        baseLine.trainPowerHit(analyser.getPowerBallDraws());
@@ -64,9 +65,9 @@ public class Main
 //        piTrainer.trainPowerHitWithPrimeAcc(analyser.getPowerBallDraws());
 //        PowerBallPrimeTrainer primeTrainer = new PowerBallPrimeTrainer();
 //        primeTrainer.train(analyser.getPowerBallDraws());
-        PowerBallLinearTrainer trainer = new PowerBallLinearTrainer(analyser.getPowerBallDraws());
-        PowerBallLinearWorker worker = new PowerBallLinearWorker(-9997, 1, analyser.getPowerBallDraws());
-        worker.run();
+//        PowerBallLinearTrainer trainer = new PowerBallLinearTrainer(analyser.getPowerBallDraws());
+//        PowerBallLinearWorker worker = new PowerBallLinearWorker(-9997, 1, analyser.getPowerBallDraws());
+//        worker.run();
 
     }
 }

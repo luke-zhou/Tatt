@@ -44,7 +44,7 @@ public class Test
 
         System.out.println(-46%45);
 
-        System.out.println((new Date()).toInstant());
+        System.out.println((new Date()).toString());
     }
 
     int IndexOfLastOccurence(String A, String B){
