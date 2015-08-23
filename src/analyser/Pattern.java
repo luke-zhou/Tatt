@@ -71,6 +71,26 @@ public class Pattern
         totalCount++;
     }
 
+    public PatternDetail getTt()
+    {
+        return tt;
+    }
+
+    public PatternDetail getFf()
+    {
+        return ff;
+    }
+
+    public PatternDetail getFt()
+    {
+        return ft;
+    }
+
+    public PatternDetail getTf()
+    {
+        return tf;
+    }
+
     public void updatePatternDetail(Boolean input, Boolean output)
     {
         if (input && output)
@@ -106,4 +126,6 @@ public class Pattern
                 ")";
 
     }
+
+
 }
