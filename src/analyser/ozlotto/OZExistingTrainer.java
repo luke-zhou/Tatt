@@ -3,7 +3,6 @@ package analyser.ozlotto;
 import analyser.Pattern;
 import analyser.PatternKey;
 import analyser.TrainResult;
-import analyser.powerball.PowerBallAnalyser;
 import domain.draw.OZDraw;
 
 import java.util.*;
@@ -25,24 +24,25 @@ public class OZExistingTrainer extends OZAbstractTrainer
 
         //distance 1 only
 //        int distance =1;
-        for (int distance = 1; distance <= 10; distance++)
+
+        int winCount = 0;
+        for (int trainingSize = 250; trainingSize < ozDraws.size(); trainingSize++)
         {
-            int winCount = 0;
-            for (int trainingSize = 250; trainingSize < ozDraws.size(); trainingSize++)
-            {
 //                System.out.println("training for " + trainingSize);
-                System.out.print(".");
-                List<TrainResult> trainResults = new ArrayList<TrainResult>();
-                Map<PatternKey, Pattern> patternMap = analysePattern(trainingSize, existMatrix);
-                //System.out.println(ozDraws.get(trainingSize - 1));
-                for (int outputNum = 1; outputNum <= OZDraw.MAX_NUM; outputNum++)
+            System.out.print(".");
+            List<TrainResult> trainResults = new ArrayList<TrainResult>();
+            Map<PatternKey, Pattern> patternMap = analysePattern(trainingSize, existMatrix);
+            //System.out.println(ozDraws.get(trainingSize - 1));
+            for (int outputNum = 1; outputNum <= OZDraw.MAX_NUM; outputNum++)
+            {
+                double frequency = 0;
+                for (int inputNum = 1; inputNum <= OZDraw.MAX_NUM; inputNum++)
                 {
-                    double frequency = 0;
-                    for (int inputNum = 1; inputNum <= OZDraw.MAX_NUM; inputNum++)
+                    for (int distance = 1; distance <= 10; distance++)
                     {
                         PatternKey key = new PatternKey(inputNum, outputNum, distance);
                         Pattern pattern = patternMap.get(key);
-                        OZDraw draw = ozDraws.get(trainingSize - 1);
+                        OZDraw draw = ozDraws.get(trainingSize - distance);
 
                         if (draw.hasNum(inputNum))
                         {
@@ -52,6 +52,8 @@ public class OZExistingTrainer extends OZAbstractTrainer
                         {
                             //frequency += 1.0*pattern.getFt().getMatchedCount()/pattern.getFf().getMatchedCount();
                         }
+
+
                     }
 
                     TrainResult trainResult = new TrainResult(outputNum, frequency);
@@ -77,13 +79,15 @@ public class OZExistingTrainer extends OZAbstractTrainer
                 int result = ozDraws.get(trainingSize).checkWin(selection);
                 //System.out.println("result:" + result);
                 if (result > 0) winCount++;
+//                System.out.println("Distance:" + distance + "\t" + (1.0 * winCount / (ozDraws.size() - 250)));
             }
             System.out.println();
-            System.out.println("Distance:" + distance + "\t" + (1.0 * winCount / (ozDraws.size() - 250)));
+            System.out.println("TrainingSize:" + trainingSize + "\t" + (1.0 * winCount / (ozDraws.size() - 250)));
+
         }
     }
 
-    private Map<PatternKey, Pattern> analysePattern(int drawSize,Boolean[][] existMatrix)
+    private Map<PatternKey, Pattern> analysePattern(int drawSize, Boolean[][] existMatrix)
     {
         Map<PatternKey, Pattern> patternMap = new HashMap<PatternKey, Pattern>();
         for (int distance = 1; distance <= 20; distance++)
