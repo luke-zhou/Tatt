@@ -22,21 +22,20 @@ public class OZAnalyser extends AbstractAnalyser
     public void analyse()
     {
         ozDraws = CsvUtil.loadOZData(dataFileName);
-        frequency = new Frequency(OZDraw.MAX_NUM);
+        calculateFrequency(ozDraws);
+        createExistMatrix(ozDraws);
+    }
 
-        for (OZDraw ozDraw : ozDraws)
-        {
-            frequency.updateFrequency(ozDraw.getNum1());
-            frequency.updateFrequency(ozDraw.getNum2());
-            frequency.updateFrequency(ozDraw.getNum3());
-            frequency.updateFrequency(ozDraw.getNum4());
-            frequency.updateFrequency(ozDraw.getNum5());
-            frequency.updateFrequency(ozDraw.getNum6());
-            frequency.updateFrequency(ozDraw.getNum7());
-        }
+    @Override
+    protected int getMaxNum()
+    {
+        return OZDraw.MAX_NUM;
+    }
 
-        //System.out.println(frequency);
-        System.out.println(frequency.getSortedFrequency());
+    @Override
+    protected int getNumOfBall()
+    {
+        return OZDraw.NUM_OF_BALL;
     }
 
     public List<OZDraw> getOzDraws()

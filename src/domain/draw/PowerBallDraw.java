@@ -309,7 +309,7 @@ public class PowerBallDraw extends Draw
         this.powerBall = powerBall;
     }
 
-    public boolean hasNum(int num)
+    public Boolean hasNum(int num)
     {
         return num1==num || num2 ==num || num3 == num || num4==num || num5==num || num6==num;
     }

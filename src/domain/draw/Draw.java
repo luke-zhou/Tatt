@@ -29,4 +29,7 @@ public abstract class Draw
     {
         this.date = date;
     }
+
+    public abstract Integer getNum(int index);
+    public abstract Boolean hasNum(int num);
 }
