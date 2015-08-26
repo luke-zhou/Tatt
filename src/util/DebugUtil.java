@@ -10,6 +10,6 @@ public class DebugUtil
 {
     public static void consoleLog(String content)
     {
-        System.out.print(content);
+        System.out.print(content+"\n");
     }
 }

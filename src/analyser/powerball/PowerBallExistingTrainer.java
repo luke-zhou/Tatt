@@ -25,7 +25,7 @@ public class PowerBallExistingTrainer extends PowerBallAbstractTrainer
 
         //distance 1 only
         int distance =1;
-        for (int trainingSize = 50; trainingSize <= powerBallDraws.size(); trainingSize++)
+        for (int trainingSize = 50; trainingSize < powerBallDraws.size(); trainingSize++)
         {
             System.out.println("training for " + trainingSize);
             List<TrainResult> trainResults = new ArrayList<TrainResult>();
@@ -53,11 +53,11 @@ public class PowerBallExistingTrainer extends PowerBallAbstractTrainer
             }
 
             Collections.sort(trainResults);
-            for (TrainResult trainResult : trainResults)
-            {
-                System.out.print(trainResult+"\t");
-            }
-            System.out.println();
+//            for (TrainResult trainResult : trainResults)
+//            {
+//                System.out.print(trainResult+"\t");
+//            }
+//            System.out.println();
 
             Integer[] selection ={
                     trainResults.get(0).getNumber(),

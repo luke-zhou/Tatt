@@ -7,6 +7,8 @@ import domain.draw.PowerBallDraw;
 
 import java.util.List;
 
+import static util.DebugUtil.consoleLog;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Luke
@@ -20,8 +22,8 @@ public class Main
     private static String POWER_BALL_FILE = "data/powerball1005.csv";
     public static void main(String[] args)
     {
-        analyseOZ();
-//        analysePowerBall();
+//        analyseOZ();
+        analysePowerBall();
     }
 
     private static void analyseOZ()
@@ -61,7 +63,9 @@ public class Main
         PowerBallAnalyser analyser = new PowerBallAnalyser(POWER_BALL_FILE);
         analyser.printOutMatrix();
 
-        System.out.println(analyser.getExistMatrix().length);
+        consoleLog(analyser.getExistMatrix().length+"");
+        PowerBallExistingTrainer trainer = new PowerBallExistingTrainer();
+        trainer.train(analyser);
 //        PowerBallRandomTrainer baseLine = new PowerBallRandomTrainer();
 //        baseLine.train(analyser.getPowerBallDraws());
 //        baseLine.trainPowerHit(analyser.getPowerBallDraws());
