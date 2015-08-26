@@ -55,6 +55,8 @@ public class TrainResult implements Comparable<TrainResult>
     public int compareTo(TrainResult trainResult)
     {
         //reverse order
+        if (this.frequency==trainResult.frequency) return 0;
+
         return -1*(this.frequency>trainResult.frequency?1:-1);
     }
 
